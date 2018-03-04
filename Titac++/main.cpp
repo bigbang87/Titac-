@@ -21,7 +21,7 @@ int main()
 		window.clear();
 		window.draw(shape);
 		//debug image - remove UIElement.h later
-
+		//test
 		//
 		window.display();
 	}
