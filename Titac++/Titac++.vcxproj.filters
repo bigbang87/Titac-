@@ -19,6 +19,12 @@
     <Filter Include="Header Files\UI">
       <UniqueIdentifier>{a64137c9-e5d2-4234-b7db-56bdfe0dd51c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Resource">
+      <UniqueIdentifier>{b0593b21-fdb6-4299-81e2-cb1bc551ccef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Resource">
+      <UniqueIdentifier>{4133d833-286d-4395-b56a-6095219f2200}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -27,6 +33,15 @@
     <ClCompile Include="UIElement.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Canvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UIImage.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceImage.cpp">
+      <Filter>Source Files\Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIElement.h">
@@ -34,6 +49,21 @@
     </ClInclude>
     <ClInclude Include="Rect.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Canvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIImage.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceImage.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceIncludes.h">
+      <Filter>Header Files\Resource</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

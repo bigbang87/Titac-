@@ -126,11 +126,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ResourceImage.cpp" />
+    <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="UIElement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ResourceImage.h" />
+    <ClInclude Include="ResourceIncludes.h" />
+    <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="UIImage.h" />
     <ClInclude Include="Rect.h" />
+    <ClInclude Include="Canvas.h" />
     <ClInclude Include="UIElement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

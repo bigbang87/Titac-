@@ -1,13 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "UIElement.h"
+
+#include "UIImage.h"
 
 int main()
 {
-	std::string s = "TEST";
-	sf::RenderWindow window(sf::VideoMode(200, 200), s);
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	std::string windowName = "TEST";
+	sf::RenderWindow window(sf::VideoMode(500, 500), windowName);
+
+	UIImage test(Rect(0, 0, 256, 256), "test.jpg");
+	test.addChild(std::make_unique<UIImage>(Rect(50, 50, 150, 150), "test.jpg"));
+	test.addChild(std::make_unique<UIImage>(Rect(100, 100, 100, 100), "test.jpg"));
+	test.addChild(std::make_unique<UIImage>(Rect(150, 150, 50, 50), "test.jpg"));
 
 	while (window.isOpen())
 	{
@@ -19,10 +23,7 @@ int main()
 		}
 
 		window.clear();
-		window.draw(shape);
-		//debug image - remove UIElement.h later
-		//test
-		//
+		test.draw(window, 0, 0);
 		window.display();
 	}
 
