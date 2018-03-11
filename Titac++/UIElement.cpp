@@ -36,3 +36,8 @@ void UIElement::draw(sf::RenderWindow &window, int offsetX, int offsetY)
 	for(auto& child : m_children)
 		child->draw(window, offsetX + m_rect.x, offsetY + m_rect.y);
 }
+
+void UIElement::event(sf::Event & e)
+{
+	onEvent(e);
+}

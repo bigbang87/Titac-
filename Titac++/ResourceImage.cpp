@@ -3,7 +3,8 @@
 
 ResourceImage::ResourceImage(const std::string& path) : m_texturePtr(std::make_unique<sf::Texture>())
 {
-	m_texturePtr->loadFromFile(path);
+	const std::string resourcePath = "resources/images/" + path;
+	m_texturePtr->loadFromFile(resourcePath);
 }
 
 const sf::Texture& ResourceImage::getTexture()

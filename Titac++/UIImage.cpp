@@ -38,10 +38,6 @@ private:
 	std::shared_ptr<ResourceImage> m_resource;
 };
 
-UIImage::~UIImage()
-{
-}
-
 UIImage::UIImage(Rect rect, const std::string& path)
 	: UIElement(rect), pimpl(std::make_unique<SFGraphicsImpl>(path))
 {
@@ -59,4 +55,8 @@ void UIImage::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 void UIImage::setScale(float scaleX, float scaleY)
 {
 	pimpl->setScale(scaleX, scaleY);
+}
+
+UIImage::~UIImage()
+{
 }

@@ -11,3 +11,7 @@ void Canvas::renderScene()
 void Canvas::removeUIElement()
 {
 }
+
+void Canvas::addElement(UIElement uiElement)
+{
+}

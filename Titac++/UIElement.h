@@ -5,11 +5,9 @@
 #include <vector>
 
 class Scene;
-namespace sf { class RenderWindow; }
+namespace sf { class RenderWindow; class Event; }
 
 class UIElement {
-private:
-
 protected:
 	const UIElement* m_parent = nullptr;
 	std::vector<std::unique_ptr<UIElement>> m_children;
@@ -23,9 +21,11 @@ public:
 	void addChild(std::unique_ptr<UIElement> child);
 	const Rect& getRect();
 	void draw(sf::RenderWindow &window, int offsetX, int offsetY);
+	void event(sf::Event &e);
 
 private:
 	virtual void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) {};
+	virtual void onEvent(sf::Event &e) {};
 	virtual void setScale(float scaleX, float scaleY) {};
 	friend class Scene;
 };

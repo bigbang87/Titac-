@@ -43,7 +43,7 @@
       <Filter>Source Files\Resource</Filter>
     </ClCompile>
     <ClCompile Include="UIButton.cpp">
-      <Filter>Header Files\UI</Filter>
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="ResourceIncludes.h">
       <Filter>Header Files\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="UIButton.h">
+      <Filter>Header Files\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

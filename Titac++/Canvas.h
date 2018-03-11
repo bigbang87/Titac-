@@ -14,4 +14,5 @@ public:
 	Canvas(sf::RenderWindow &renderWindow);
 	void renderScene();
 	void removeUIElement();
+	void addElement(UIElement uiElement);
 };

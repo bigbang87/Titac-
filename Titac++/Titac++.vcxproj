@@ -137,6 +137,7 @@
     <ClInclude Include="ResourceImage.h" />
     <ClInclude Include="ResourceIncludes.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIImage.h" />
     <ClInclude Include="Rect.h" />
     <ClInclude Include="Canvas.h" />
