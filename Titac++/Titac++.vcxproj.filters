@@ -42,6 +42,9 @@
     <ClCompile Include="ResourceImage.cpp">
       <Filter>Source Files\Resource</Filter>
     </ClCompile>
+    <ClCompile Include="UIButton.cpp">
+      <Filter>Header Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIElement.h">
