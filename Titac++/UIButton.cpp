@@ -37,6 +37,8 @@ void UIButton::onEvent(sf::Event& e)
 		sf::Vector2i relativeMousePos = sf::Mouse::getPosition() - m_window.getPosition();
 		if (m_sfRect.contains(relativeMousePos.x, relativeMousePos.y))
 		{
+			callListeners();
+			/*
 			std::ostringstream ss;
 			ss << sf::Mouse::getPosition().x;
 			ss << ", ";
@@ -44,8 +46,18 @@ void UIButton::onEvent(sf::Event& e)
 			ss << "\n";
 			std::string s(ss.str());
 			printf(s.c_str());
+			*/
 		}
 	}
+}
+
+void UIButton::callListeners()
+{
+	//to do
+	//event propagation
+	//for (auto const& listener : listeners)
+	//	listener();
+	callback();
 }
 
 UIButton::~UIButton()

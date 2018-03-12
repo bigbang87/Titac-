@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Resource">
       <UniqueIdentifier>{4133d833-286d-4395-b56a-6095219f2200}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Game">
+      <UniqueIdentifier>{b67bb7c3-1b97-47be-9fab-58035b3d2722}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -70,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="UIButton.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="DummyClass.h">
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

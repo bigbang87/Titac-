@@ -3,6 +3,7 @@
 
 #include "UIImage.h"
 #include "UIButton.h"
+#include "DummyClass.h"
 
 int main()
 {
@@ -16,6 +17,8 @@ int main()
 	test.addChild(std::make_unique<UIImage>(Rect(150, 150, 50, 50), "test.jpg"));
 	*/
 	UIButton test(Rect(0, 0, 256, 256), window, "test.jpg", "", "");
+	DummyClass dummyClass;
+	test.addListener(std::bind(&DummyClass::printMe, &dummyClass));
 
 
 	while (window.isOpen())

@@ -134,6 +134,7 @@
     <ClCompile Include="UIElement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DummyClass.h" />
     <ClInclude Include="ResourceImage.h" />
     <ClInclude Include="ResourceIncludes.h" />
     <ClInclude Include="ResourceManager.h" />
