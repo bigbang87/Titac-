@@ -28,7 +28,7 @@ void UIButton::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 		m_defaultImage->onDraw(window, offsetX, offsetY);
 }
 
-void UIButton::onEvent(sf::Event& e)
+void UIButton::onEvent(const sf::Event& e)
 {
 	if (e.type == sf::Event::MouseMoved)
 	{
@@ -49,6 +49,11 @@ void UIButton::onEvent(sf::Event& e)
 			*/
 		}
 	}
+}
+
+void UIButton::addListener(std::function<void()> listener)
+{
+	callback = std::move(listener);
 }
 
 void UIButton::callListeners()

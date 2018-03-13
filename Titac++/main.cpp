@@ -4,6 +4,7 @@
 #include "UIImage.h"
 #include "UIButton.h"
 #include "DummyClass.h"
+#include "Canvas.h"
 
 int main()
 {
@@ -16,10 +17,12 @@ int main()
 	test.addChild(std::make_unique<UIImage>(Rect(100, 100, 100, 100), "test.jpg"));
 	test.addChild(std::make_unique<UIImage>(Rect(150, 150, 50, 50), "test.jpg"));
 	*/
-	UIButton test(Rect(0, 0, 256, 256), window, "test.jpg", "", "");
 	DummyClass dummyClass;
-	test.addListener(std::bind(&DummyClass::printMe, &dummyClass));
 
+	Canvas canvas(window);
+	std::unique_ptr<UIButton> btnPtr = std::make_unique<UIButton>(Rect(0, 0, 256, 256), window, "test.jpg", "", "");
+	btnPtr->addListener([&dummyClass]() {dummyClass.printMe(); });
+	canvas.addElement(std::move(btnPtr));
 
 	while (window.isOpen())
 	{
@@ -28,10 +31,10 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			test.event(event);
+			canvas.canvasEvent(event);
 		}
 		window.clear();
-		test.draw(window, 0, 0);
+		canvas.drawElements();
 		window.display();
 	}
 

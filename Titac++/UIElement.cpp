@@ -37,7 +37,7 @@ void UIElement::draw(sf::RenderWindow &window, int offsetX, int offsetY)
 		child->draw(window, offsetX + m_rect.x, offsetY + m_rect.y);
 }
 
-void UIElement::event(sf::Event & e)
+void UIElement::event(const sf::Event& e)
 {
 	onEvent(e);
 }

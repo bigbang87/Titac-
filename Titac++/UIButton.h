@@ -15,22 +15,15 @@ private:
 	const sf::RenderWindow& m_window;
 	std::function<void()> callback;
 
+private:
 	void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) override;
-	void onEvent(sf::Event &e) override;
+	void onEvent(const sf::Event &e) override;
 	void callListeners();
 
 public:
 	UIButton(Rect rect, const sf::RenderWindow& window);
 	UIButton(Rect rect, const sf::RenderWindow& window, const std::string& defImage,
 		const std::string& hoverImage, const std::string& clickImage);
-
-	template<typename T>
-	void addListener(T value);
+	void addListener(std::function<void()> listener);
 	~UIButton();
 };
-
-template<typename T>
-inline void UIButton::addListener(T value)
-{
-	callback = value;
-}
