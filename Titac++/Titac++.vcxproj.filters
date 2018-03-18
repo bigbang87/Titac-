@@ -48,6 +48,9 @@
     <ClCompile Include="UIButton.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="GameDelegate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIElement.h">
@@ -79,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="UIPanel.h">
       <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDelegate.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

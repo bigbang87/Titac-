@@ -19,22 +19,22 @@ private:
 	std::unique_ptr<UIImage> m_defaultImage;
 	std::unique_ptr<UIImage> m_hoverImage;
 	std::unique_ptr<UIImage> m_pressImage;
-	sf::IntRect m_sfRect;
 	std::function<void()> m_callback;
+	std::function<void()> m_pressCallBack;
 	States m_state;
 
 private:
 	void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) override;
 	bool onEvent(const sf::Event &e) override;
 	void callListeners();
-	void onHover();
-	void onPressed();
 	void onClick();
 
 public:
-	UIButton(Rect rect);
-	UIButton(Rect rect, const std::string& defImage,
+	UIButton(sf::IntRect rect);
+	UIButton(sf::IntRect rect, const std::string& defImage,
 		const std::string& hoverImage, const std::string& pressImage);
 	void addListener(std::function<void()> listener);
-	~UIButton();
+	void addPressedListener(std::function<void()> listener);
+	bool onHover();
+	bool onPressed();
 };

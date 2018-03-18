@@ -1,8 +1,9 @@
 #pragma once
-#include "Rect.h"
 #include <string>
 #include <memory>
 #include <vector>
+#include <SFML/Graphics/Rect.hpp>
+#include <iostream>
 
 class Scene;
 namespace sf { class RenderWindow; class Event; }
@@ -11,15 +12,14 @@ class UIElement {
 protected:
 	const UIElement* m_parent = nullptr;
 	std::vector<std::unique_ptr<UIElement>> m_children;
-	Rect m_rect;
+	sf::IntRect m_rect;
 
 public:
-	UIElement(const Rect& rect);
-	void loadImage(const std::string& name);
+	UIElement(const sf::IntRect& rect);
 	void setSize(unsigned int width, unsigned int height);
-	void setPosition(unsigned int x, unsigned int y);
+	void setPosition(int x, int y);
+	const sf::IntRect& getRect();
 	void addChild(std::unique_ptr<UIElement> child);
-	const Rect& getRect();
 	void draw(sf::RenderWindow &window, int offsetX, int offsetY);
 	bool event(const sf::Event &e);
 	void setParent(const UIElement* parent);

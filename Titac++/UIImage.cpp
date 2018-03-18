@@ -38,7 +38,7 @@ private:
 	std::shared_ptr<ResourceImage> m_resource;
 };
 
-UIImage::UIImage(Rect rect, const std::string& path)
+UIImage::UIImage(sf::IntRect rect, const std::string& path)
 	: UIElement(rect), pimpl(std::make_unique<SFGraphicsImpl>(path))
 {
 	sf::Vector2u originalSize = pimpl->getSize();
@@ -49,7 +49,7 @@ UIImage::UIImage(Rect rect, const std::string& path)
 
 void UIImage::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 {
-	pimpl->draw(window, offsetX + m_rect.x, offsetY + m_rect.y);
+	pimpl->draw(window, offsetX + m_rect.left, offsetY + m_rect.top);
 }
 
 void UIImage::setScale(float scaleX, float scaleY)

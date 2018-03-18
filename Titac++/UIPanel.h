@@ -5,5 +5,5 @@
 class UIPanel : public UIElement
 {
 public:
-	UIPanel(Rect rect) : UIElement(rect) {};
+	UIPanel(sf::IntRect rect) : UIElement(rect) {};
 };

@@ -4,15 +4,13 @@
 #include <iostream>
 #include "Canvas.h"
 
-UIButton::UIButton(Rect rect) : UIElement(rect),
-	m_sfRect(rect.x, rect.y, rect.width, rect.height),
+UIButton::UIButton(sf::IntRect rect) : UIElement(rect),
 	m_defaultImage(nullptr), m_hoverImage(nullptr), m_pressImage(nullptr)
 {
 }
 
-UIButton::UIButton(Rect rect, const std::string& defImage, const std::string& hoverImage,
-	const std::string& pressImage) :
-	UIElement(rect), m_sfRect(rect.x, rect.y, rect.width, rect.height)
+UIButton::UIButton(sf::IntRect rect, const std::string& defImage, const std::string& hoverImage,
+	const std::string& pressImage) : UIElement(rect)
 {
 	if (!defImage.empty())
 		m_defaultImage = std::make_unique<UIImage>(rect, defImage);
@@ -44,7 +42,7 @@ bool UIButton::onEvent(const sf::Event& e)
 	switch (e.type)
 	{
 	case sf::Event::MouseMoved:
-		if (m_sfRect.contains(mousePos.x, mousePos.y)) {
+		if (m_rect.contains(mousePos.x, mousePos.y)) {
 			if (m_state != States::pressed)
 				onHover();
 		}
@@ -73,31 +71,38 @@ void UIButton::addListener(std::function<void()> listener)
 	m_callback = std::move(listener);
 }
 
+void UIButton::addPressedListener(std::function<void()> listener)
+{
+	m_pressCallBack = std::move(listener);
+}
+
 void UIButton::callListeners()
 {
 	//to do
 	//event propagation
 	//for (auto const& listener : listeners)
 	//	listener();
-	m_callback();
+	if (m_callback != NULL)
+		m_callback();
 }
 
-void UIButton::onHover()
+bool UIButton::onHover()
 {
 	m_state = States::hover;
+	//std::cout << m_rect.width << ", " << m_rect.height << "\n";
+	return true;
 }
 
-void UIButton::onPressed()
+bool UIButton::onPressed()
 {
 	m_state = States::pressed;
+	if (m_pressCallBack != NULL)
+		m_pressCallBack();
+	return true;
 }
 
 void UIButton::onClick()
 {
 	m_state = States::hover;
 	callListeners();
-}
-
-UIButton::~UIButton()
-{
 }

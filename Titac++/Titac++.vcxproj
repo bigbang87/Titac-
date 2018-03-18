@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameDelegate.cpp" />
     <ClCompile Include="ResourceImage.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UIImage.cpp" />
@@ -135,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DummyClass.h" />
+    <ClInclude Include="GameDelegate.h" />
     <ClInclude Include="ResourceImage.h" />
     <ClInclude Include="ResourceIncludes.h" />
     <ClInclude Include="ResourceManager.h" />

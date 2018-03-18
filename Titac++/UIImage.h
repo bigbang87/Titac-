@@ -11,7 +11,7 @@ private:
 	std::unique_ptr<SFGraphicsImpl> pimpl;
 
 public:
-	UIImage(Rect rect, const std::string& path);
+	UIImage(sf::IntRect rect, const std::string& path);
 	void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) override;
 	void setScale(float scaleX, float scaleY) override;
 	~UIImage();
