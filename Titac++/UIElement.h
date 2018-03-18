@@ -21,11 +21,13 @@ public:
 	void addChild(std::unique_ptr<UIElement> child);
 	const Rect& getRect();
 	void draw(sf::RenderWindow &window, int offsetX, int offsetY);
-	void event(const sf::Event &e);
+	bool event(const sf::Event &e);
+	void setParent(const UIElement* parent);
+	const UIElement* getParent();
 
 private:
 	virtual void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) {};
-	virtual void onEvent(const sf::Event &e) {};
+	virtual bool onEvent(const sf::Event &e) { return false; };
 	virtual void setScale(float scaleX, float scaleY) {};
 	friend class Scene;
 };

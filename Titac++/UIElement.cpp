@@ -37,7 +37,17 @@ void UIElement::draw(sf::RenderWindow &window, int offsetX, int offsetY)
 		child->draw(window, offsetX + m_rect.x, offsetY + m_rect.y);
 }
 
-void UIElement::event(const sf::Event& e)
+bool UIElement::event(const sf::Event& e)
 {
-	onEvent(e);
+	return onEvent(e);
+}
+
+void UIElement::setParent(const UIElement* parent)
+{
+	m_parent = std::move(parent);
+}
+
+const UIElement * UIElement::getParent()
+{
+	return nullptr;
 }

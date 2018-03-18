@@ -6,24 +6,35 @@
 
 class UIButton : public UIElement
 {
+public:
+	enum class States
+	{
+		standard,
+		hover,
+		pressed
+	};
+
 private:
 	const UIElement* m_parent = nullptr;
 	std::unique_ptr<UIImage> m_defaultImage;
 	std::unique_ptr<UIImage> m_hoverImage;
-	std::unique_ptr<UIImage> m_clickImage;
+	std::unique_ptr<UIImage> m_pressImage;
 	sf::IntRect m_sfRect;
-	const sf::RenderWindow& m_window;
-	std::function<void()> callback;
+	std::function<void()> m_callback;
+	States m_state;
 
 private:
 	void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) override;
-	void onEvent(const sf::Event &e) override;
+	bool onEvent(const sf::Event &e) override;
 	void callListeners();
+	void onHover();
+	void onPressed();
+	void onClick();
 
 public:
-	UIButton(Rect rect, const sf::RenderWindow& window);
-	UIButton(Rect rect, const sf::RenderWindow& window, const std::string& defImage,
-		const std::string& hoverImage, const std::string& clickImage);
+	UIButton(Rect rect);
+	UIButton(Rect rect, const std::string& defImage,
+		const std::string& hoverImage, const std::string& pressImage);
 	void addListener(std::function<void()> listener);
 	~UIButton();
 };

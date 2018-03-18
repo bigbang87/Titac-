@@ -77,5 +77,8 @@
     <ClInclude Include="DummyClass.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="UIPanel.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
