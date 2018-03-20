@@ -24,10 +24,12 @@ public:
 	bool event(const sf::Event &e);
 	void setParent(const UIElement* parent);
 	const UIElement* getParent();
+	void scale(float scaleFactorX, float scaleFactorY);
+	virtual ~UIElement();
 
 private:
 	virtual void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) {};
 	virtual bool onEvent(const sf::Event &e) { return false; };
-	virtual void setScale(float scaleX, float scaleY) {};
+	virtual void onScale(float scaleX, float scaleY) {};
 	friend class Scene;
 };

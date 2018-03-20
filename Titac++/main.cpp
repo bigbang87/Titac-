@@ -11,12 +11,6 @@ int main()
 {
 	std::string windowName = "TEST";
 	sf::RenderWindow window(sf::VideoMode(500, 500), windowName, sf::Style::Default);
-	/*
-	UIImage test(Rect(0, 0, 256, 256), "test.jpg");
-	test.addChild(std::make_unique<UIImage>(Rect(50, 50, 150, 150), "test.jpg"));
-	test.addChild(std::make_unique<UIImage>(Rect(100, 100, 100, 100), "test.jpg"));
-	test.addChild(std::make_unique<UIImage>(Rect(150, 150, 50, 50), "test.jpg"));
-	*/
 	GameDelegate gameDelegate(window);
 	DummyClass dummyClass;
 

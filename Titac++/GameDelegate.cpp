@@ -9,7 +9,7 @@ void GameDelegate::setResoluationFromCursor()
 {
 	const sf::Vector2i pos = m_window.getPosition();
 	const sf::Vector2i size = sf::Mouse::getPosition();
-	sf::Vector2u newSize(pos.x + size.x, pos.y + size.y);
+	sf::Vector2u newSize(600, 600);
 	m_window.setSize(newSize);
-	//std::cout << newSize.x << ", " << newSize.y << "\n";
+	std::cout << "GameDelegate: " <<  newSize.x << ", " << newSize.y << "\n";
 }

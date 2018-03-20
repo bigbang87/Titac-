@@ -25,6 +25,7 @@ private:
 
 private:
 	void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) override;
+	void onScale(float scaleX, float scaleY) override;
 	bool onEvent(const sf::Event &e) override;
 	void callListeners();
 	void onClick();

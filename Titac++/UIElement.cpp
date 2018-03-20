@@ -48,3 +48,21 @@ const UIElement* UIElement::getParent()
 {
 	return nullptr;
 }
+
+void UIElement::scale(float scaleFactorX, float scaleFactorY)
+{
+	int newXPos, newYPos;
+	unsigned int newXSize, newYSize;
+	newXPos = (int)(m_rect.left * scaleFactorX);
+	newYPos = (int)(m_rect.top * scaleFactorY);
+	newXSize = (unsigned int)(m_rect.width * scaleFactorX);
+	newYSize = (unsigned int)(m_rect.height * scaleFactorY);
+	m_rect = sf::IntRect(newXPos, newYPos, newXSize, newYSize);
+	onScale(scaleFactorX, scaleFactorY);
+	for (auto& child : m_children)
+		child->scale(scaleFactorX, scaleFactorY);
+}
+
+UIElement::~UIElement()
+{
+}

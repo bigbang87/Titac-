@@ -42,6 +42,7 @@ void Canvas::canvasEvent(const sf::Event& e)
 		canProcess = true;
 		break;
 	case sf::Event::Resized:
+		m_renderWindow.setView(sf::View(sf::FloatRect(0, 0, e.size.width, e.size.height)));
 		updateWindowRect();
 		canProcess = true;
 		break;
@@ -62,24 +63,11 @@ void Canvas::updateWindowRect()
 	sf::Vector2i pos = m_renderWindow.getPosition();
 	sf::Vector2u size = m_renderWindow.getSize();
 	m_windowRect = std::move(sf::IntRect(pos.x, pos.y, size.x, size.y));
-	//std::cout << m_renderWindow.getSize().x << ", " << m_renderWindow.getSize().y << "\n";
-	//std::cout << m_oldWindowRect.width << ", " << m_oldWindowRect.height << "\n";
-	float xSizeRatio, ySizeRatio;
-	int newXPos, newYPos;
-	unsigned int newXSize, newYSize;
+	float xSizeRatio = (float)m_renderWindow.getSize().x / (float)m_oldWindowRect.width;
+	float ySizeRatio = (float)m_renderWindow.getSize().y / (float)m_oldWindowRect.height;
 	sf::IntRect elementRect;
 	for (auto const& element : elements)
-	{
-		xSizeRatio = (float)m_renderWindow.getSize().x / (float)m_oldWindowRect.width;
-		ySizeRatio = (float)m_renderWindow.getSize().y / (float)m_oldWindowRect.height;
-		elementRect = element->getRect();
-		newXPos = (int)(elementRect.left * xSizeRatio);
-		newYPos = (int)(elementRect.top * ySizeRatio);
-		newXSize = (unsigned int)(elementRect.width * xSizeRatio);
-		newYSize = (unsigned int)(elementRect.height * ySizeRatio);
-		element->setPosition(newXPos, newYPos);
-		element->setSize(newXSize, newYSize);
-	}
+		element->scale(xSizeRatio, ySizeRatio);
 	m_oldWindowRect = m_windowRect;
 }
 

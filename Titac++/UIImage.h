@@ -13,6 +13,5 @@ private:
 public:
 	UIImage(sf::IntRect rect, const std::string& path);
 	void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) override;
-	void setScale(float scaleX, float scaleY) override;
-	~UIImage();
+	void onScale(float scaleX, float scaleY) override;
 };

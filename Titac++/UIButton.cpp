@@ -36,6 +36,17 @@ void UIButton::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 	}
 }
 
+void UIButton::onScale(float scaleX, float scaleY)
+{
+	//std::cout << "UIButton Rect: " << m_rect.width << ", " << m_rect.height << "\n";
+	if (m_defaultImage != nullptr)
+		m_defaultImage->scale(scaleX, scaleY);
+	if (m_hoverImage != nullptr)
+		m_hoverImage->scale(scaleX, scaleY);
+	if (m_pressImage != nullptr)
+		m_pressImage->scale(scaleX, scaleY);
+}
+
 bool UIButton::onEvent(const sf::Event& e)
 {
 	const sf::Vector2i mousePos = sf::Vector2i(e.mouseMove.x, e.mouseMove.y);
@@ -52,9 +63,7 @@ bool UIButton::onEvent(const sf::Event& e)
 		break;
 	case sf::Event::MouseButtonPressed:
 		if (e.mouseButton.button == sf::Mouse::Left && m_state == States::hover)
-		{
 			onPressed();
-		}
 		break;
 	case sf::Event::MouseButtonReleased:
 		if (e.mouseButton.button == sf::Mouse::Left && m_state == States::pressed)
@@ -89,7 +98,7 @@ void UIButton::callListeners()
 bool UIButton::onHover()
 {
 	m_state = States::hover;
-	//std::cout << m_rect.width << ", " << m_rect.height << "\n";
+	//std::cout << "UIButton :" << m_rect.width << ", " << m_rect.height << "\n";
 	return true;
 }
 
@@ -97,7 +106,9 @@ bool UIButton::onPressed()
 {
 	m_state = States::pressed;
 	if (m_pressCallBack != NULL)
+	{
 		m_pressCallBack();
+	}
 	return true;
 }
 
