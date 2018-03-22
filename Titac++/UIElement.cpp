@@ -54,7 +54,7 @@ const sf::Vector2f UIElement::getLocalScale()
 	return localScale;
 }
 
-void UIElement::setLocalScale(const sf::Vector2f scale)
+void UIElement::setLocalScale(const sf::Vector2f& scale)
 {
 	if (scale == localScale)
 		return;

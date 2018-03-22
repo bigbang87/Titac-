@@ -37,8 +37,9 @@ void Canvas::canvasEvent(const sf::Event& e)
 		canProcess = true;
 		break;
 	case sf::Event::Resized:
-		m_renderWindow.setView(sf::View(sf::FloatRect(0, 0, e.size.width, e.size.height)));
-		updateResolution(sf::Vector2u(e.size.width, e.size.height));
+		sf::Vector2u fixedRes = m_gameDelegate.getFixedRatioResolution(e.size.width, e.size.height);
+		m_renderWindow.setView(sf::View(sf::FloatRect(0, 0, fixedRes.x, fixedRes.y)));
+		updateResolution(fixedRes);
 		canProcess = true;
 		break;
 	}
@@ -55,10 +56,12 @@ void Canvas::drawElements()
 
 void Canvas::updateResolution(sf::Vector2u newRes)
 {
+	std::cout << "Canvas: resoultion changed \n";
 	sf::Vector2u oldRes = m_gameDelegate.getOriginalResolution();
 	float xScaleRatio = (float)newRes.x / (float)oldRes.x;
 	float yScaleRatio = (float)newRes.y / (float)oldRes.y;
 	sf::Vector2f newScale(xScaleRatio, yScaleRatio);
 	for (auto const& element : elements)
 		element->setLocalScale(newScale);
+	m_renderWindow.setSize(newRes);
 }

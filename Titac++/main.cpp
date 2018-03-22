@@ -10,7 +10,7 @@
 int main()
 {
 	std::string windowName = "TEST";
-	sf::RenderWindow window(sf::VideoMode(500, 500), windowName, sf::Style::Default);
+	sf::RenderWindow window(sf::VideoMode(800, 600), windowName, sf::Style::Default);
 	GameDelegate gameDelegate(window);
 	DummyClass dummyClass;
 

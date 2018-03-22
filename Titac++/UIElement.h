@@ -29,7 +29,7 @@ public:
 	void setParent(const UIElement* parent);
 	const UIElement* getParent();
 	const sf::Vector2f getLocalScale();
-	void setLocalScale(const sf::Vector2f scale);
+	void setLocalScale(const sf::Vector2f& scale);
 	virtual ~UIElement();
 
 private:
