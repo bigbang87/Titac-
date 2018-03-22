@@ -36,15 +36,15 @@ void UIButton::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 	}
 }
 
-void UIButton::onScale(float scaleX, float scaleY)
+void UIButton::onScale(const sf::Vector2f scale)
 {
 	//std::cout << "UIButton Rect: " << m_rect.width << ", " << m_rect.height << "\n";
 	if (m_defaultImage != nullptr)
-		m_defaultImage->scale(scaleX, scaleY);
+		m_defaultImage->setLocalScale(scale);
 	if (m_hoverImage != nullptr)
-		m_hoverImage->scale(scaleX, scaleY);
+		m_hoverImage->setLocalScale(scale);
 	if (m_pressImage != nullptr)
-		m_pressImage->scale(scaleX, scaleY);
+		m_pressImage->setLocalScale(scale);
 }
 
 bool UIButton::onEvent(const sf::Event& e)

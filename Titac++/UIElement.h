@@ -13,6 +13,10 @@ protected:
 	const UIElement* m_parent = nullptr;
 	std::vector<std::unique_ptr<UIElement>> m_children;
 	sf::IntRect m_rect;
+	sf::IntRect m_originalRect;
+
+private:
+	sf::Vector2f localScale;
 
 public:
 	UIElement(const sf::IntRect& rect);
@@ -24,12 +28,13 @@ public:
 	bool event(const sf::Event &e);
 	void setParent(const UIElement* parent);
 	const UIElement* getParent();
-	void scale(float scaleFactorX, float scaleFactorY);
+	const sf::Vector2f getLocalScale();
+	void setLocalScale(const sf::Vector2f scale);
 	virtual ~UIElement();
 
 private:
 	virtual void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) {};
 	virtual bool onEvent(const sf::Event &e) { return false; };
-	virtual void onScale(float scaleX, float scaleY) {};
+	virtual void onScale(const sf::Vector2f scale) {};
 	friend class Scene;
 };

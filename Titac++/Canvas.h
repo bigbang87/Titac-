@@ -14,8 +14,6 @@ private:
 	sf::RenderWindow& m_renderWindow;
 	GameDelegate& m_gameDelegate;
 	std::vector<std::unique_ptr<UIElement>> elements;
-	static sf::IntRect m_windowRect;
-	sf::IntRect m_oldWindowRect;
 
 public:
 	Canvas() = delete;
@@ -24,8 +22,5 @@ public:
 	void addElement(std::unique_ptr<UIElement> uiElementPtr);
 	void canvasEvent(const sf::Event& e);
 	void drawElements();
-	void updateWindowRect();
-	static const sf::IntRect getWindowRect();
-	static const sf::Vector2i getWindowPosition();
-	static const sf::Vector2i getReleativeMousePosition();
+	void updateResolution(sf::Vector2u newRes);
 };

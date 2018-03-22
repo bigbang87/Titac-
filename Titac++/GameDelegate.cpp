@@ -3,13 +3,22 @@
 
 GameDelegate::GameDelegate(sf::RenderWindow& renderWindow) : m_window(renderWindow)
 {
+	m_originalResolution = renderWindow.getSize();
+	m_resolution = renderWindow.getSize();
 }
 
-void GameDelegate::setResoluationFromCursor()
+void GameDelegate::setResolution(sf::Vector2u resolution)
 {
-	const sf::Vector2i pos = m_window.getPosition();
-	const sf::Vector2i size = sf::Mouse::getPosition();
-	sf::Vector2u newSize(600, 600);
-	m_window.setSize(newSize);
-	std::cout << "GameDelegate: " <<  newSize.x << ", " << newSize.y << "\n";
+	m_window.setSize(resolution);
+	std::cout << "GameDelegate: " << resolution.x << ", " << resolution.y << "\n";
+}
+
+const sf::Vector2u GameDelegate::getResolution()
+{
+	return m_resolution;
+}
+
+const sf::Vector2u GameDelegate::getOriginalResolution()
+{
+	return m_originalResolution;
 }

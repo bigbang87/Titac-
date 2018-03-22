@@ -25,7 +25,7 @@ public:
 
 	void setScale(float scaleX, float scaleY)
 	{
-		m_sprite->scale(scaleX, scaleY);
+		m_sprite->setScale(scaleX, scaleY);
 	}
 
 	sf::Vector2u getSize()
@@ -52,7 +52,7 @@ void UIImage::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 	pimpl->draw(window, offsetX + m_rect.left, offsetY + m_rect.top);
 }
 
-void UIImage::onScale(float scaleX, float scaleY)
+void UIImage::onScale(sf::Vector2f scale)
 {
-	pimpl->setScale(scaleX, scaleY);
+	pimpl->setScale(scale.x, scale.y);
 }

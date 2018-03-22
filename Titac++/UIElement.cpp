@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Canvas.h"
 
-UIElement::UIElement(const sf::IntRect& rect) : m_rect(rect)
+UIElement::UIElement(const sf::IntRect& rect) : m_rect(rect), m_originalRect(rect)
 {
 }
 
@@ -49,18 +49,26 @@ const UIElement* UIElement::getParent()
 	return nullptr;
 }
 
-void UIElement::scale(float scaleFactorX, float scaleFactorY)
+const sf::Vector2f UIElement::getLocalScale()
 {
+	return localScale;
+}
+
+void UIElement::setLocalScale(const sf::Vector2f scale)
+{
+	if (scale == localScale)
+		return;
+	localScale = scale;
 	int newXPos, newYPos;
 	unsigned int newXSize, newYSize;
-	newXPos = (int)(m_rect.left * scaleFactorX);
-	newYPos = (int)(m_rect.top * scaleFactorY);
-	newXSize = (unsigned int)(m_rect.width * scaleFactorX);
-	newYSize = (unsigned int)(m_rect.height * scaleFactorY);
+	newXPos = (int)(m_originalRect.left * scale.x);
+	newYPos = (int)(m_originalRect.top * scale.y);
+	newXSize = (unsigned int)(m_originalRect.width * scale.x);
+	newYSize = (unsigned int)(m_originalRect.height * scale.y);
 	m_rect = sf::IntRect(newXPos, newYPos, newXSize, newYSize);
-	onScale(scaleFactorX, scaleFactorY);
+	onScale(scale);
 	for (auto& child : m_children)
-		child->scale(scaleFactorX, scaleFactorY);
+		child->setLocalScale(scale);
 }
 
 UIElement::~UIElement()
