@@ -126,9 +126,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="GameDelegate.cpp" />
     <ClCompile Include="ResourceFont.cpp" />
     <ClCompile Include="ResourceImage.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="main.cpp" />
@@ -137,12 +139,14 @@
     <ClCompile Include="UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Actor.h" />
     <ClInclude Include="DummyClass.h" />
     <ClInclude Include="GameDelegate.h" />
     <ClInclude Include="ResourceFont.h" />
     <ClInclude Include="ResourceImage.h" />
     <ClInclude Include="ResourceIncludes.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIImage.h" />
     <ClInclude Include="Rect.h" />

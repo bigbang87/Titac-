@@ -12,5 +12,6 @@ public:
 	UIText(sf::IntRect rect, const std::string& path);
 	void setText(std::string& text);
 	void onDraw(sf::RenderWindow& window, int offsetX, int offsetY) override;
+	void onScale(const sf::Vector2f scale) override;
 	void setColor(const sf::Color& color);
 };

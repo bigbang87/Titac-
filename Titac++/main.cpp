@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include "GameDelegate.h"
+#include "Scene.h"
 
 #include "UIImage.h"
 #include "DummyClass.h"
@@ -12,6 +13,7 @@ int main()
 	std::string windowName = "TEST";
 	sf::RenderWindow window(sf::VideoMode(800, 600), windowName, sf::Style::Default);
 	GameDelegate gameDelegate(window);
+	Scene scene(window, gameDelegate);
 	DummyClass dummyClass;
 
 	Canvas canvas(window, gameDelegate);

@@ -14,9 +14,9 @@ public:
 		window.draw(*m_text);
 	}
 
-	void setScale(float scaleX, float scaleY)
+	void setScale(const sf::Vector2f scale)
 	{
-		m_text->setScale(scaleX, scaleY);
+		m_text->setScale(scale);
 	}
 
 	void setText(std::string& text)
@@ -34,6 +34,10 @@ public:
 		m_text->setFillColor(color);
 	}
 
+	void setFontSize(unsigned int size)
+	{
+		m_text->setCharacterSize(size);
+	}
 
 private:
 	std::unique_ptr<sf::Text> m_text;
@@ -44,6 +48,7 @@ UIText::UIText(sf::IntRect rect, const std::string& path)
 	: UIElement(rect), pimpl(std::make_unique<SFTextImpl>(path))
 {
 	pimpl->setPosition(sf::Vector2f(rect.left, rect.top));
+	pimpl->setFontSize(rect.height);
 }
 
 void UIText::setText(std::string& text)
@@ -54,6 +59,12 @@ void UIText::setText(std::string& text)
 void UIText::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 {
 	pimpl->draw(window, offsetX, offsetY);
+}
+
+void UIText::onScale(const sf::Vector2f scale)
+{
+	pimpl->setScale(scale);
+	pimpl->setPosition(sf::Vector2f(m_rect.left, m_rect.top));
 }
 
 void UIText::setColor(const sf::Color& color)
