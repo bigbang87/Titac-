@@ -82,7 +82,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\REPOS\C++\Libs\SFML\lib\static-std</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;winmm.lib;gdi32.lib;jpeg.lib;user32.lib;Advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-s-d.lib;sfml-window-s-d.lib;sfml-system-s-d.lib;opengl32.lib;winmm.lib;gdi32.lib;jpeg.lib;user32.lib;Advapi32.lib;freetype.lib</AdditionalDependencies>
       <SubSystem>NotSet</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -127,16 +127,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameDelegate.cpp" />
+    <ClCompile Include="ResourceFont.cpp" />
     <ClCompile Include="ResourceImage.cpp" />
     <ClCompile Include="UIButton.cpp" />
     <ClCompile Include="UIImage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Canvas.cpp" />
     <ClCompile Include="UIElement.cpp" />
+    <ClCompile Include="UIText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DummyClass.h" />
     <ClInclude Include="GameDelegate.h" />
+    <ClInclude Include="ResourceFont.h" />
     <ClInclude Include="ResourceImage.h" />
     <ClInclude Include="ResourceIncludes.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -146,6 +149,7 @@
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIPanel.h" />
+    <ClInclude Include="UIText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

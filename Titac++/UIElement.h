@@ -2,8 +2,9 @@
 #include <string>
 #include <memory>
 #include <vector>
-#include <SFML/Graphics/Rect.hpp>
 #include <iostream>
+#include <SFML/Graphics/Rect.hpp>
+#include <SFML/Graphics/Color.hpp>
 
 class Scene;
 namespace sf { class RenderWindow; class Event; }

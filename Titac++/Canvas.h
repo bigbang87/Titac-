@@ -6,6 +6,7 @@
 #include "SFML/Window/Event.hpp"
 #include "UIButton.h"
 #include "GameDelegate.h"
+#include "UIText.h"
 
 class Canvas
 {

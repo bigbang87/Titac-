@@ -9,6 +9,7 @@ GameDelegate::GameDelegate(sf::RenderWindow& renderWindow) : m_window(renderWind
 
 void GameDelegate::setResolution(sf::Vector2u& resolution)
 {
+	m_resolution = resolution;
 	m_window.setSize(resolution);
 	std::cout << "GameDelegate: " << resolution.x << ", " << resolution.y << "\n";
 }
@@ -33,12 +34,14 @@ const sf::Vector2u GameDelegate::getFixedRatioResolution(const unsigned int x, c
 		newRatio = (float)m_originalResolution.y / y;
 		widthRatio = (float)m_originalResolution.x / newRatio;
 		res = sf::Vector2u(widthRatio, y);
-		//m_resolution = res;
 		return res;
 	}
-	newRatio = x / (float)m_originalResolution.x;
-	widthRatio = (float)m_originalResolution.y / newRatio;
-	//m_resolution = res;
-	res = sf::Vector2u(x, widthRatio);
-	return res;
+	if (m_resolution.x != x)
+	{
+		newRatio = (float)m_originalResolution.x / x;
+		widthRatio = (float)m_originalResolution.y / newRatio;
+		res = sf::Vector2u(x, widthRatio);
+		return res;
+	}
+	return sf::Vector2u(x, y);
 }

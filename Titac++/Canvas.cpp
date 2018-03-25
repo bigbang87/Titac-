@@ -63,5 +63,5 @@ void Canvas::updateResolution(sf::Vector2u newRes)
 	sf::Vector2f newScale(xScaleRatio, yScaleRatio);
 	for (auto const& element : elements)
 		element->setLocalScale(newScale);
-	m_renderWindow.setSize(newRes);
+	m_gameDelegate.setResolution(newRes);
 }
