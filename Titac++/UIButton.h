@@ -24,7 +24,7 @@ private:
 	States m_state;
 
 private:
-	void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) override;
+	void onDraw(sf::RenderWindow &window, const int offsetX, const int offsetY) override;
 	void onScale(const sf::Vector2f scale) override;
 	bool onEvent(const sf::Event &e) override;
 	void callListeners();

@@ -56,7 +56,6 @@ void Canvas::drawElements()
 
 void Canvas::updateResolution(sf::Vector2u newRes)
 {
-	std::cout << "Canvas: resoultion changed \n";
 	sf::Vector2u oldRes = m_gameDelegate.getOriginalResolution();
 	float xScaleRatio = (float)newRes.x / (float)oldRes.x;
 	float yScaleRatio = (float)newRes.y / (float)oldRes.y;

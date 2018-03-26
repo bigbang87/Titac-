@@ -20,7 +20,7 @@ UIButton::UIButton(sf::IntRect rect, const std::string& defImage, const std::str
 		m_pressImage = std::make_unique<UIImage>(rect, pressImage);
 }
 
-void UIButton::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
+void UIButton::onDraw(sf::RenderWindow& window, const int offsetX, const int offsetY)
 {
 	switch (m_state)
 	{

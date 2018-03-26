@@ -9,7 +9,7 @@ public:
 		m_resource = ResourceManager<ResourceFont>::get().loadResource(path);
 		m_text->setFont(m_resource->getFont());
 	}
-	void draw(sf::RenderWindow& window, int offsetX, int offsetY)
+	void draw(sf::RenderWindow& window, const int offsetX, const int offsetY)
 	{
 		window.draw(*m_text);
 	}

@@ -9,9 +9,11 @@ GameDelegate::GameDelegate(sf::RenderWindow& renderWindow) : m_window(renderWind
 
 void GameDelegate::setResolution(sf::Vector2u& resolution)
 {
+	if (resolution == m_window.getSize())
+		return;
 	m_resolution = resolution;
 	m_window.setSize(resolution);
-	std::cout << "GameDelegate: " << resolution.x << ", " << resolution.y << "\n";
+	std::cout << "GameDelegate: resolution set to " << resolution.x << " x " << resolution.y << "\n";
 }
 
 const sf::Vector2u GameDelegate::getResolution()

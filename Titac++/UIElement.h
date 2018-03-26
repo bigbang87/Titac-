@@ -21,11 +21,11 @@ private:
 
 public:
 	UIElement(const sf::IntRect& rect);
-	void setSize(unsigned int width, unsigned int height);
-	void setPosition(int x, int y);
+	void setSize(const unsigned int width, const unsigned int height);
+	void setPosition(const int x, const int y);
 	const sf::IntRect& getRect();
 	void addChild(std::unique_ptr<UIElement> child);
-	void draw(sf::RenderWindow &window, int offsetX, int offsetY);
+	void draw(sf::RenderWindow &window, const int offsetX, const int offsetY);
 	bool event(const sf::Event &e);
 	void setParent(const UIElement* parent);
 	const UIElement* getParent();
@@ -34,7 +34,7 @@ public:
 	virtual ~UIElement();
 
 private:
-	virtual void onDraw(sf::RenderWindow &window, int offsetX, int offsetY) {};
+	virtual void onDraw(sf::RenderWindow &window, const int offsetX, const int offsetY) {};
 	virtual bool onEvent(const sf::Event &e) { return false; };
 	virtual void onScale(const sf::Vector2f scale) {};
 	friend class Scene;

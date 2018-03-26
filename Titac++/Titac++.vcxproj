@@ -142,6 +142,7 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="DummyClass.h" />
     <ClInclude Include="GameDelegate.h" />
+    <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="ResourceFont.h" />
     <ClInclude Include="ResourceImage.h" />
     <ClInclude Include="ResourceIncludes.h" />
@@ -149,7 +150,6 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="UIButton.h" />
     <ClInclude Include="UIImage.h" />
-    <ClInclude Include="Rect.h" />
     <ClInclude Include="Canvas.h" />
     <ClInclude Include="UIElement.h" />
     <ClInclude Include="UIPanel.h" />

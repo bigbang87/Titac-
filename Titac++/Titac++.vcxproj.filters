@@ -68,9 +68,6 @@
     <ClInclude Include="UIElement.h">
       <Filter>Header Files\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Rect.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="Canvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -109,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="Actor.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuScene.h">
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
