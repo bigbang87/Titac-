@@ -38,7 +38,6 @@ void Canvas::canvasEvent(const sf::Event& e)
 		break;
 	case sf::Event::Resized:
 		sf::Vector2u fixedRes = m_gameDelegate.getFixedRatioResolution(e.size.width, e.size.height);
-		m_renderWindow.setView(sf::View(sf::FloatRect(0, 0, fixedRes.x, fixedRes.y)));
 		updateResolution(fixedRes);
 		canProcess = true;
 		break;

@@ -1,16 +1,19 @@
 #include "GameDelegate.h"
 #include <iostream>
+#include "Scene.h"
 
 GameDelegate::GameDelegate(sf::RenderWindow& renderWindow) : m_window(renderWindow)
 {
 	m_originalResolution = renderWindow.getSize();
 	m_resolution = renderWindow.getSize();
+	m_currentScene = nullptr;
 }
 
 void GameDelegate::setResolution(sf::Vector2u& resolution)
 {
 	if (resolution == m_window.getSize())
 		return;
+	m_window.setView(sf::View(sf::FloatRect(0, 0, resolution.x, resolution.y)));
 	m_resolution = resolution;
 	m_window.setSize(resolution);
 	std::cout << "GameDelegate: resolution set to " << resolution.x << " x " << resolution.y << "\n";
@@ -46,4 +49,15 @@ const sf::Vector2u GameDelegate::getFixedRatioResolution(const unsigned int x, c
 		return res;
 	}
 	return sf::Vector2u(x, y);
+}
+
+void GameDelegate::loadScene(std::unique_ptr<Scene> scene)
+{
+	m_currentScene.reset();
+	m_currentScene = std::move(scene);
+}
+
+Scene* GameDelegate::getCurrentScene()
+{
+	return m_currentScene.get();
 }

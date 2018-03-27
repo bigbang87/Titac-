@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 #include "GameDelegate.h"
-#include "MainMenuScene.h"
+#include "Scenes.h"
 
 #include "UIImage.h"
 #include "DummyClass.h"
@@ -15,8 +15,7 @@ int main()
 	std::cout << "Program initialized successfully\n";
 
 	GameDelegate gameDelegate(window);
-	std::unique_ptr<Scene> currentScenePtr = nullptr;
-	currentScenePtr = std::make_unique<MainMenuScene>(window, gameDelegate);
+	gameDelegate.loadScene(std::make_unique<MainMenuScene>(window, gameDelegate));
 
 	while (window.isOpen())
 	{ 
@@ -25,10 +24,10 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-			currentScenePtr->processEvents(event);
+			gameDelegate.getCurrentScene()->processEvents(event);
 		}
 		window.clear(sf::Color(241, 244, 66, 255));
-		currentScenePtr->draw();
+		gameDelegate.getCurrentScene()->draw();
 		window.display();
 	}
 

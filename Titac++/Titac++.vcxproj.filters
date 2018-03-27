@@ -110,5 +110,8 @@
     <ClInclude Include="MainMenuScene.h">
       <Filter>Header Files\Game</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes.h">
+      <Filter>Header Files\Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
