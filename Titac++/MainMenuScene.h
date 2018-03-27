@@ -7,7 +7,6 @@ class MainMenuScene : public Scene
 public:
 	MainMenuScene(sf::RenderWindow& windows, GameDelegate& gameDelegate) : Scene(windows, gameDelegate)
 	{
-		onInitialize();
 	}
 	
 	void onInitialize() override

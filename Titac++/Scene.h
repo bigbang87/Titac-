@@ -6,12 +6,12 @@
 class Scene
 {
 protected:
-	virtual void onInitialize() {};
 	std::unique_ptr<Canvas> m_canvas;
 
 public:
 	Scene(sf::RenderWindow& window, GameDelegate& gameDelegate);
 	virtual ~Scene() {};
+	virtual void onInitialize() {};
 	void updateActors();
 	void draw();
 	void processEvents(const sf::Event& e);

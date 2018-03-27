@@ -55,6 +55,7 @@ void GameDelegate::loadScene(std::unique_ptr<Scene> scene)
 {
 	m_currentScene.reset();
 	m_currentScene = std::move(scene);
+	m_currentScene->onInitialize();
 }
 
 Scene* GameDelegate::getCurrentScene()
