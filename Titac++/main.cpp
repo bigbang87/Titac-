@@ -11,7 +11,7 @@
 int main()
 {
 	std::string windowName = "TEST";
-	sf::RenderWindow window(sf::VideoMode(800, 600), windowName, sf::Style::Default);
+	sf::RenderWindow window(sf::VideoMode(512, 512), windowName, sf::Style::Default);
 	std::cout << "Program initialized successfully\n";
 
 	GameDelegate gameDelegate(window);

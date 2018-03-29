@@ -5,12 +5,16 @@ Scene::Scene(sf::RenderWindow& window, GameDelegate& gameDelegate) : m_window(wi
 	m_canvas = std::make_unique<Canvas>(window, gameDelegate);
 }
 
+void Scene::addActor(std::unique_ptr<Actor> actor)
+{
+	actor->onBegin();
+	actors.push_back(std::move(actor));
+}
+
 void Scene::updateActors()
 {
 	for (auto& actor : actors)
-	{
-
-	}
+		actor->onTick();
 }
 
 void Scene::draw()

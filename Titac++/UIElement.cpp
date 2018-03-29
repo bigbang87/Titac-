@@ -6,11 +6,6 @@ UIElement::UIElement(const sf::IntRect& rect) : m_rect(rect), m_originalRect(rec
 {
 }
 
-void UIElement::setSize(unsigned int width, unsigned int height)
-{
-	m_rect = sf::IntRect(m_rect.left, m_rect.top, width, height);
-}
-
 void UIElement::setPosition(int x, int y)
 {
 	m_rect = sf::IntRect(x, y, m_rect.width, m_rect.height);
@@ -67,6 +62,7 @@ void UIElement::setLocalScale(const sf::Vector2f& scale)
 	newYSize = (unsigned int)(m_originalRect.height * scale.y);
 	m_rect = sf::IntRect(newXPos, newYPos, newXSize, newYSize);
 	onScale(scale);
+	setRect(m_rect);
 	for (auto& child : m_children)
 		child->setLocalScale(scale);
 }

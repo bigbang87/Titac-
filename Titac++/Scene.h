@@ -12,6 +12,7 @@ public:
 	Scene(sf::RenderWindow& window, GameDelegate& gameDelegate);
 	virtual ~Scene() {};
 	virtual void onInitialize() {};
+	void addActor(std::unique_ptr<Actor> actor);
 	void updateActors();
 	void draw();
 	void processEvents(const sf::Event& e);

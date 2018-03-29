@@ -15,7 +15,7 @@ public:
 		window.draw(*m_sprite);
 	}
 
-	void setSize(int x, int y)
+	void setSize(const unsigned int x, const unsigned int y)
 	{
 		sf::Vector2u size = m_resource->getTexture().getSize();
 		float newX = (float)x / size.x;
@@ -25,12 +25,12 @@ public:
 
 	void setScale(float scaleX, float scaleY)
 	{
-		m_sprite->setScale(scaleX, scaleY);
+		m_sprite->scale(scaleX, scaleY);
 	}
 
 	sf::Vector2u getSize()
 	{
-		return m_resource->getTexture().getSize();;
+		return m_resource->getTexture().getSize();
 	}
 
 private:
@@ -52,7 +52,7 @@ void UIImage::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 	pimpl->draw(window, offsetX + m_rect.left, offsetY + m_rect.top);
 }
 
-void UIImage::onScale(sf::Vector2f scale)
+void UIImage::setRect(const sf::IntRect newRect)
 {
-	pimpl->setScale(scale.x, scale.y);
+	pimpl->setSize(newRect.width, newRect.height);
 }

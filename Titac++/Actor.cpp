@@ -3,11 +3,3 @@
 Actor::Actor()
 {
 }
-
-void Actor::onBegin()
-{
-}
-
-void Actor::onTick()
-{
-}
