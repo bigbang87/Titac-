@@ -18,13 +18,13 @@ int main()
 	gameDelegate.loadScene(std::make_unique<MainMenuScene>(window, gameDelegate));
 
 	while (window.isOpen())
-	{ 
+	{
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+			gameDelegate.getCurrentScene()->processEvents(event);
 			if (event.type == sf::Event::Closed)
 				window.close();
-			gameDelegate.getCurrentScene()->processEvents(event);
 		}
 		window.clear(sf::Color(241, 244, 66, 255));
 		gameDelegate.getCurrentScene()->draw();
