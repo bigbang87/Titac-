@@ -23,6 +23,7 @@ void MainMenuScene::onInitialize()
 	m_canvas->addElement(std::move(optionsBtnPtr));
 	std::unique_ptr<UIButton> exitBtnPtr = std::make_unique<UIButton>(sf::IntRect(128, 351, 256, 88),
 		"defaultExitButton.png", "hoverExitButton.png", "pressedExitButton.png");
+	exitBtnPtr->addListener([this]() {m_window.close(); });
 	m_canvas->addElement(std::move(exitBtnPtr));
 	std::cout << "MainMenuScene loaded\n";
 }

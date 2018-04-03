@@ -26,3 +26,13 @@ void Scene::processEvents(const sf::Event& e)
 {
 	m_canvas->canvasEvent(e);
 }
+
+Canvas* Scene::getCanvas()
+{
+	return m_canvas.get();
+}
+
+GameDelegate& Scene::getGameDelegate()
+{
+	return m_gameDelegate;
+}

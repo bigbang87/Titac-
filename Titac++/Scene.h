@@ -16,6 +16,8 @@ public:
 	void updateActors();
 	void draw();
 	void processEvents(const sf::Event& e);
+	Canvas* getCanvas();
+	GameDelegate& getGameDelegate();
 
 private:
 	std::vector<std::unique_ptr<Actor>> actors;

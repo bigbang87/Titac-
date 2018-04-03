@@ -128,6 +128,7 @@
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
     <ClCompile Include="GameDelegate.cpp" />
+    <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="MainMenuScene.cpp" />
     <ClCompile Include="OptionsScene.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Actor.h" />
     <ClInclude Include="DummyClass.h" />
     <ClInclude Include="GameDelegate.h" />
+    <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="OptionsScene.h" />
