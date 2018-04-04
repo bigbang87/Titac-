@@ -148,6 +148,7 @@
     <ClInclude Include="GameDelegate.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameScene.h" />
+    <ClInclude Include="GenericGrid.h" />
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="OptionsScene.h" />
     <ClInclude Include="ResourceFont.h" />

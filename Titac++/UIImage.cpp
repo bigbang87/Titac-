@@ -6,13 +6,19 @@ class UIImage::SFGraphicsImpl
 public:
 	SFGraphicsImpl(const std::string& path) : m_sprite(std::make_unique<sf::Sprite>())
 	{
-		m_resource = ResourceManager<ResourceImage>::get().loadResource(path);
-		m_sprite->setTexture(m_resource->getTexture());
+		setSprite(path);
 	}
+
 	void draw(sf::RenderWindow& window, int offsetX, int offsetY)
 	{
 		m_sprite->setPosition(offsetX, offsetY);
 		window.draw(*m_sprite);
+	}
+
+	void setSprite(const std::string& path)
+	{
+		m_resource = ResourceManager<ResourceImage>::get().loadResource(path);
+		m_sprite->setTexture(m_resource->getTexture());
 	}
 
 	void setSize(const unsigned int x, const unsigned int y)
@@ -55,4 +61,9 @@ void UIImage::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 void UIImage::setRect(const sf::IntRect newRect)
 {
 	pimpl->setSize(newRect.width, newRect.height);
+}
+
+void UIImage::setSprite(const std::string& path)
+{
+	pimpl->setSprite(path);
 }

@@ -31,6 +31,9 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{63a56c44-ef07-4384-8f1d-a711d7105994}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utilities">
+      <UniqueIdentifier>{45be22bf-6786-4fec-b867-c45e6b191cbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="GameMap.h">
       <Filter>Header Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GenericGrid.h">
+      <Filter>Header Files\Utilities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
