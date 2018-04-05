@@ -1,21 +1,26 @@
 #pragma once
 
 #include <vector>
-#include "SFML/Graphics.hpp"
 
 template <typename T>
 class GenericGrid
 {
 public:
-	GenericGrid(unsigned int sizeX, unsigned int sizeY)
+	GenericGrid(std::size_t sizeX, std::size_t sizeY)
 	{
-		m_size = sf::Vector2u(sizeX, sizeY);
+		m_sizeX = sizeX;
+		m_sizeY = sizeY;
 		grid.resize(sizeX * sizeY);
 	}
 	
-	const sf::Vector2u getSize()
+	const std::size_t getSizeX()
 	{
-		return m_size;
+		return m_sizeX;
+	}
+
+	const std::size_t getSizeY()
+	{
+		return m_sizeY;
 	}
 
 	T getElement(unsigned int x, unsigned int y)
@@ -31,6 +36,7 @@ public:
 	}
 
 private:
-	sf::Vector2u m_size;
+	std::size_t m_sizeX;
+	std::size_t m_sizeY;
 	std::vector<T> grid;
 };

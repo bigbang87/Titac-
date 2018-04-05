@@ -51,10 +51,32 @@ const sf::Vector2u GameDelegate::getFixedRatioResolution(const unsigned int x, c
 	return sf::Vector2u(x, y);
 }
 
+/*
+void GameDelegate::loadScene(std::unique_ptr<Scene> scene)
+{
+	Scene* scenePtr = scene.get();
+	m_deferredTasks.addTask([this, scenePtr]() {deferredLoadGame(scenePtr); });
+}
+*/
+
+/*
 void GameDelegate::loadScene(std::unique_ptr<Scene> scene)
 {
 	m_currentScene.reset();
 	m_currentScene = std::move(scene);
+	m_currentScene->onInitialize();
+}
+*/
+
+void GameDelegate::loadScene(Scene* scene)
+{
+	m_deferredTasks.addTask([this, scene]() {deferredLoadGame(scene); });
+}
+
+void GameDelegate::deferredLoadGame(Scene* scene)
+{
+	m_currentScene.reset();
+	m_currentScene = std::move(std::unique_ptr<Scene>(scene));
 	m_currentScene->onInitialize();
 }
 

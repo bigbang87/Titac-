@@ -48,12 +48,7 @@ void Canvas::canvasEvent(const sf::Event& e)
 	int initialElementsSize = elements.size();
 	if (canProcess)
 		for (auto const& element : elements)
-		{
-			//ask some real programmer how to dela with collection size changed during the execution
-			if (elements.size() == 0 || elements.size() > initialElementsSize)
-				return;
 			element->event(e);
-		}
 }
 
 void Canvas::drawElements()

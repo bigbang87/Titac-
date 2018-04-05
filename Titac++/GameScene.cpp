@@ -15,7 +15,7 @@ void GameScene::onInitialize()
 	//back button
 	std::unique_ptr<UIButton> optionsBtnPtr = std::make_unique<UIButton>(sf::IntRect(10, 10, 64, 64),
 		"defaultBackButton.png", "hoverBackButton.png", "pressedBackButton.png");
-	optionsBtnPtr->addListener([this]() {m_gameDelegate.loadScene(std::make_unique<MainMenuScene>(m_window, m_gameDelegate)); });
+	optionsBtnPtr->addListener([this]() {m_gameDelegate.loadScene(new MainMenuScene(m_window, m_gameDelegate)); });
 	m_canvas->addElement(std::move(optionsBtnPtr));
 	gameMap = std::make_unique<GameMap>(5, 3, this);
 	std::cout << "GameScene loaded\n";

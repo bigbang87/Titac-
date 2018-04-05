@@ -81,6 +81,9 @@
     <ClCompile Include="GameMap.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="DeferredTasks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UIElement.h">
@@ -142,6 +145,9 @@
     </ClInclude>
     <ClInclude Include="GenericGrid.h">
       <Filter>Header Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="DeferredTasks.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,11 +15,11 @@ void MainMenuScene::onInitialize()
 
 	std::unique_ptr<UIButton> startBtnPtr = std::make_unique<UIButton>(sf::IntRect(128, 145, 256, 88),
 		"defaultStartButton.png", "hoverStartButton.png", "pressedStartButton.png");
-	startBtnPtr->addListener([this]() {m_gameDelegate.loadScene(std::make_unique<GameScene>(m_window, m_gameDelegate)); });
+	startBtnPtr->addListener([this]() {m_gameDelegate.loadScene(new GameScene(m_window, m_gameDelegate)); });
 	m_canvas->addElement(std::move(startBtnPtr));
 	std::unique_ptr<UIButton> optionsBtnPtr = std::make_unique<UIButton>(sf::IntRect(128, 248, 256, 88),
 		"defaultOptionsButton.png", "hoverOptionsButton.png", "pressedOptionsButton.png");
-	optionsBtnPtr->addListener([this]() {m_gameDelegate.loadScene(std::make_unique<OptionsScene>(m_window, m_gameDelegate)); });
+	optionsBtnPtr->addListener([this]() {m_gameDelegate.loadScene(new OptionsScene(m_window, m_gameDelegate)); });
 	m_canvas->addElement(std::move(optionsBtnPtr));
 	std::unique_ptr<UIButton> exitBtnPtr = std::make_unique<UIButton>(sf::IntRect(128, 351, 256, 88),
 		"defaultExitButton.png", "hoverExitButton.png", "pressedExitButton.png");

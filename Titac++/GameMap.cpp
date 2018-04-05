@@ -20,8 +20,8 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 	int topMargin = 100;
 	int spacing = 15;
 	sf::Vector2u res = m_scenePtr->getGameDelegate().getResolution();
-	sf::Vector2u size = m_grid->getSize();
-	int tableSize = (int)((size.x * tileSize) + (size.x * spacing));
+	std::size_t sizeX = m_grid->getSizeX();
+	int tableSize = (int)((sizeX * tileSize) + (sizeX * spacing));
 	int centringOffset = (int)((res.x - tableSize) * 0.5f) + (int)(spacing * 0.5f);
 	int posX = (x * tileSize) + (x * spacing) + centringOffset;
 	int posY = (y * tileSize) + (y * spacing) + topMargin;

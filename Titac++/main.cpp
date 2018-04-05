@@ -15,7 +15,8 @@ int main()
 	std::cout << "Program initialized successfully\n";
 
 	GameDelegate gameDelegate(window);
-	gameDelegate.loadScene(std::make_unique<MainMenuScene>(window, gameDelegate));
+	gameDelegate.loadScene(new MainMenuScene(window, gameDelegate));
+	gameDelegate.m_deferredTasks.executeTasks();
 
 	while (window.isOpen())
 	{
@@ -29,6 +30,7 @@ int main()
 		window.clear(sf::Color(241, 244, 66, 255));
 		gameDelegate.getCurrentScene()->draw();
 		window.display();
+		gameDelegate.m_deferredTasks.executeTasks();
 	}
 
 	return 0;

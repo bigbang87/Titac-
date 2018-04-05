@@ -127,6 +127,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="DeferredTasks.cpp" />
     <ClCompile Include="GameDelegate.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameScene.cpp" />
@@ -144,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="DeferredTasks.h" />
     <ClInclude Include="DummyClass.h" />
     <ClInclude Include="GameDelegate.h" />
     <ClInclude Include="GameMap.h" />
