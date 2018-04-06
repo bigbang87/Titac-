@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <cassert>
 
 template <typename T>
 class GenericGrid
@@ -13,29 +14,18 @@ public:
 		grid.resize(sizeX * sizeY);
 	}
 	
-	const std::size_t getSizeX()
-	{
-		return m_sizeX;
-	}
+	std::size_t getSizeX() const { return m_sizeX; }
+	std::size_t getSizeY() const { return m_sizeY; }
 
-	const std::size_t getSizeY()
-	{
-		return m_sizeY;
-	}
-
-	T getElement(unsigned int x, unsigned int y)
-	{
-		//TODO getting the element
-		return grid[0];
-	}
-
-	bool setElement(unsigned int x, unsigned int y, T element)
-	{
-		//TODO getting the element
-		grid[x * y] = element;
-	}
-
+	T& at(std::size_t x, std::size_t y) { return grid[getIdx(x,y)]; }
+	const T& at(std::size_t x, std::size_t y) const { return grid[getIdx(x,y)]; }
 private:
+	std::size_t getIdx(std::size_t x, std::size_t y) const
+	{
+		assert(x < m_sizeX && y < m_sizeY);
+		return y * m_sizeX + x;	
+	}
+	
 	std::size_t m_sizeX;
 	std::size_t m_sizeY;
 	std::vector<T> grid;
