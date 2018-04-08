@@ -4,7 +4,7 @@
 #include "UIButton.h"
 #include  "GenericGrid.h"
 
-class GameMap
+class GameMap : public Actor
 {
 public:
 	GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scene);

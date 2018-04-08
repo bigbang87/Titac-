@@ -17,6 +17,9 @@ void GameScene::onInitialize()
 		"defaultBackButton.png", "hoverBackButton.png", "pressedBackButton.png");
 	optionsBtnPtr->addListener([this]() {m_gameDelegate.loadScene(new MainMenuScene(m_window, m_gameDelegate)); });
 	m_canvas->addElement(std::move(optionsBtnPtr));
-	gameMap = std::make_unique<GameMap>(5, 3, this);
+	//Actors
+	std::unique_ptr<Actor> gameMapPtr = std::make_unique<GameMap>(5, 3, this);
+	m_GameMapPtr = gameMapPtr.get();
+	addActor(std::move(gameMapPtr));
 	std::cout << "GameScene loaded\n";
 }

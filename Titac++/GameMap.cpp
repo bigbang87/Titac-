@@ -5,6 +5,12 @@
 GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scene) : m_scenePtr(scene)
 {
 	m_grid = std::make_unique<GenericGrid<int>>(sizeX, sizeY);
+
+	for (GenericGrid<int>::Iterator i = m_grid->begin(); i != m_grid->end(); i++)
+	{
+		std::cout << *i << " ";
+	}
+
 	for (int x = 0; x < sizeX; ++x) {
 		for (int y = 0; y < sizeY; ++y)
 		{

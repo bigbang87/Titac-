@@ -9,5 +9,5 @@ public:
 	GameScene(sf::RenderWindow& windows, GameDelegate& gameDelegate);
 	void onInitialize() override;
 private:
-	std::unique_ptr<GameMap> gameMap;
+	Actor* m_GameMapPtr;
 };
