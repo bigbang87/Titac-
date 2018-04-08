@@ -15,6 +15,6 @@ private:
 
 private:
 	std::unique_ptr<GenericGrid<int>> m_grid;
-	std::vector<UIButton> m_buttonTiles;
+	std::vector<std::unique_ptr<UIImage>> m_images;
 	Scene* m_scenePtr;
 };

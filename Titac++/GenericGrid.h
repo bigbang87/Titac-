@@ -82,8 +82,8 @@ public:
 
 	Iterator begin() { return Iterator(grid, 0); }
 	Iterator end() { return Iterator(grid, getSize()); }
-	//ConstIterator begin() const { return ConstIterator(grid, 0); }
-	//ConstIterator end() const { return ConstIterator(grid, getSize()); }
+	ConstIterator begin() const { return ConstIterator(grid, 0); }
+	ConstIterator end() const { return ConstIterator(grid, getSize()); }
 
 private:
 	std::size_t getIdx(std::size_t x, std::size_t y) const
