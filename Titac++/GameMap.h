@@ -17,12 +17,5 @@ private:
 	std::unique_ptr<GenericGrid<int>> m_grid;
 	std::vector<UIImage*> m_images;
 	Scene* m_scenePtr;
-	std::map<int, std::string> m_figuresMap
-	{
-		{ 0, "emptyFigure.png" },
-		{ 1, "banana.png" },
-		{ 2, "apple.png" },
-		{ 3, "cherry.png" },
-		{ 4, "strawberry.png" }
-	};
+	std::map<int, std::string> m_figuresMap;
 };

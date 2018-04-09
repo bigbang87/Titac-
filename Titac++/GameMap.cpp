@@ -5,10 +5,8 @@
 GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scene) : m_scenePtr(scene)
 {
 	m_grid = std::make_unique<GenericGrid<int>>(sizeX, sizeY);
-
 	/*for (GenericGrid<int>::Iterator i = m_grid->begin(); i != m_grid->end(); i++)
 		std::cout << *i << " ";*/
-
 	for (int y = 0; y < sizeY; ++y) {
 		for (int x = 0; x < sizeX; ++x)
 		{
@@ -16,7 +14,12 @@ GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scen
 			m_grid->at(x, y) = 0;
 		}
 	}
-
+	m_figuresMap = {
+	{ 0, "emptyFigure.png" },
+	{ 1, "banana.png" },
+	{ 2, "apple.png" },
+	{ 3, "cherry.png" },
+	{ 4, "strawberry.png" }	};
 	std::cout << "GameMap created with size of " << sizeX << " x " << sizeY << "\n";
 }
 
