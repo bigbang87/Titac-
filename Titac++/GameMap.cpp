@@ -7,11 +7,10 @@ GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scen
 	m_grid = std::make_unique<GenericGrid<int>>(sizeX, sizeY);
 
 	/*for (GenericGrid<int>::Iterator i = m_grid->begin(); i != m_grid->end(); i++)
-	{
-		std::cout << *i << " ";
-	}*/
-	for (int x = 0; x < sizeX; ++x) {
-		for (int y = 0; y < sizeY; ++y)
+		std::cout << *i << " ";*/
+
+	for (int y = 0; y < sizeY; ++y) {
+		for (int x = 0; x < sizeX; ++x)
 		{
 			makeTile(x, y);
 			m_grid->at(x, y) = 0;
@@ -39,12 +38,19 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 	btnPtr->addListener([this, x, y]() {this->onClick(x, y); });
 	m_scenePtr->getCanvas()->addElement(std::move(btnPtr));
 	//adding images
-	std::unique_ptr<UIImage> imagePtr = std::make_unique<UIImage>(sf::IntRect(posX, posY, tileSize, tileSize), "test.png");
+	std::unique_ptr<UIImage> imagePtr = std::make_unique<UIImage>(sf::IntRect(posX, posY, tileSize, tileSize), "emptyFigure.png");
+	m_images.push_back(imagePtr.get());
 	m_scenePtr->getCanvas()->addElement(std::move(imagePtr));
-	m_images.push_back(std::move(imagePtr));
 }
 
 void GameMap::onClick(unsigned int x, unsigned int y)
 {
+	int& getValue = m_grid->at(x, y);
+	++getValue;
+	getValue = (getValue == m_figuresMap.size()) ? 0 : getValue;
+	const int imgPos = m_grid->getIdx(x, y);
+	UIImage* imgPtr = m_images.at(imgPos);
+	std::string path = m_figuresMap.at(getValue);
+	imgPtr->setSprite(path);
 	std::cout << "Clicked tile: [" << x << "][" << y << "] = " << m_grid->at(x, y) << "\n";
 }

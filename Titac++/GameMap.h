@@ -15,6 +15,14 @@ private:
 
 private:
 	std::unique_ptr<GenericGrid<int>> m_grid;
-	std::vector<std::unique_ptr<UIImage>> m_images;
+	std::vector<UIImage*> m_images;
 	Scene* m_scenePtr;
+	std::map<int, std::string> m_figuresMap
+	{
+		{ 0, "emptyFigure.png" },
+		{ 1, "banana.png" },
+		{ 2, "apple.png" },
+		{ 3, "cherry.png" },
+		{ 4, "strawberry.png" }
+	};
 };
