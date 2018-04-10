@@ -46,6 +46,50 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 	m_scenePtr->getCanvas()->addElement(std::move(imagePtr));
 }
 
+bool GameMap::checkWin(int& player)
+{
+	int winSize = 3;
+	int points = 0;
+	int currentPlayer = 0;
+	//check lines
+	for (int y = 0; y < m_grid->getSizeY(); ++y) {
+		for (int x = 0; x < m_grid->getSizeX(); ++x)
+		{
+			const int cell = m_grid->at(x, y);
+			bool win = checkCell(cell, currentPlayer, points, player, winSize);
+			if (win)
+				return true;
+		}
+	}
+	return false;
+}
+
+bool GameMap::checkCell(const int& cell, int& currentPlayer, int& points, int& winPlayer, const int winSize)
+{
+	if (cell == 0)
+	{
+		points = 0;
+		currentPlayer = 0;
+		return false;
+	}
+	if (cell == currentPlayer)
+	{
+		++points;
+	}
+	else
+	{
+		currentPlayer = cell;
+		points = 1;
+		return false;
+	}
+	if (points == winSize)
+	{
+		winPlayer = currentPlayer;
+		return true;
+	}
+	return false;
+}
+
 void GameMap::onClick(unsigned int x, unsigned int y)
 {
 	int& getValue = m_grid->at(x, y);
@@ -56,4 +100,7 @@ void GameMap::onClick(unsigned int x, unsigned int y)
 	std::string path = m_figuresMap.at(getValue);
 	imgPtr->setSprite(path);
 	std::cout << "Clicked tile: [" << x << "][" << y << "] = " << m_grid->at(x, y) << "\n";
+	int winner = 0;
+	if (checkWin(winner))
+		std::cout << "Plater number " << winner << " won the game\n";
 }
