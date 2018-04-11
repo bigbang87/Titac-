@@ -12,8 +12,9 @@ public:
 
 private:
 	void makeTile(unsigned int x, unsigned int y);
-	bool checkWin(int& player);
-	bool checkCell(const int& cell, int& currentPlayer, int& points, int& winPlayer, const int winSize);
+	bool checkWin(const unsigned int player, const int x, const int y);
+	const bool cellInBounds(const sf::Vector2i cell) const;
+	const bool checkPoint(const sf::Vector2i point, const unsigned int player);
 
 private:
 	std::unique_ptr<GenericGrid<int>> m_grid;

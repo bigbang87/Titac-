@@ -46,46 +46,63 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 	m_scenePtr->getCanvas()->addElement(std::move(imagePtr));
 }
 
-bool GameMap::checkWin(int& player)
+bool GameMap::checkWin(const unsigned int player, const int x, const int y)
 {
-	int winSize = 3;
-	int points = 0;
-	int currentPlayer = 0;
-	//check lines
-	for (int y = 0; y < m_grid->getSizeY(); ++y) {
-		for (int x = 0; x < m_grid->getSizeX(); ++x)
+	const unsigned int winSize = 3;
+	sf::Vector2i v_topLeft(-1, -1);
+	sf::Vector2i v_top(0, -1);
+	sf::Vector2i v_topRight(1, -1);
+	sf::Vector2i v_left(-1, 0);
+	sf::Vector2i v_right(1, 0);
+	sf::Vector2i v_botLeft(-1, 1);
+	sf::Vector2i v_bot(0, 1);
+	sf::Vector2i v_botRight(1, 1);
+	
+	sf::Vector2i aPoint(0, 0);
+	sf::Vector2i bPoint(0, 0);
+	bool canMoveA = true;
+	bool canMoveB = true;
+	unsigned int points = 0;
+
+	//check horizontal
+	for (int i = 0; i < winSize; ++i)
+	{
+		if (canMoveA)
 		{
-			const int cell = m_grid->at(x, y);
-			bool win = checkCell(cell, currentPlayer, points, player, winSize);
-			if (win)
-				return true;
+			aPoint += v_left;
+			canMoveA = checkPoint(aPoint, player);
+			if (canMoveA)
+				points++;
 		}
+		if (canMoveB)
+		{
+			aPoint += v_right;
+			canMoveB = checkPoint(aPoint, player);
+			if (canMoveB)
+				points++;
+		}
+		if (!canMoveA && !canMoveB)
+			break;
+
 	}
 	return false;
 }
 
-bool GameMap::checkCell(const int& cell, int& currentPlayer, int& points, int& winPlayer, const int winSize)
+const bool GameMap::cellInBounds(const sf::Vector2i cell) const
 {
-	if (cell == 0)
-	{
-		points = 0;
-		currentPlayer = 0;
+	if (cell.x < 0 || cell.y < 0 ||
+		cell.x >= m_grid->getSizeX() || cell.y >= m_grid->getSizeY())
 		return false;
-	}
-	if (cell == currentPlayer)
+	return true;
+}
+
+const bool GameMap::checkPoint(const sf::Vector2i point, const unsigned int player)
+{
+	if (cellInBounds(point))
 	{
-		++points;
-	}
-	else
-	{
-		currentPlayer = cell;
-		points = 1;
-		return false;
-	}
-	if (points == winSize)
-	{
-		winPlayer = currentPlayer;
-		return true;
+		int cellValue = m_grid->at(point.x, point.y);
+		if (cellValue == player)
+			return true;
 	}
 	return false;
 }
@@ -101,6 +118,6 @@ void GameMap::onClick(unsigned int x, unsigned int y)
 	imgPtr->setSprite(path);
 	std::cout << "Clicked tile: [" << x << "][" << y << "] = " << m_grid->at(x, y) << "\n";
 	int winner = 0;
-	if (checkWin(winner))
-		std::cout << "Plater number " << winner << " won the game\n";
+	//if (checkWin(winner))
+	//	std::cout << "Plater number " << winner << " won the game\n";
 }
