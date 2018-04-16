@@ -14,6 +14,7 @@ GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scen
 			m_grid->at(x, y) = 0;
 		}
 	}
+
 	m_figuresMap = {
 	{ 0, "emptyFigure.png" },
 	{ 1, "banana.png" },
@@ -21,6 +22,8 @@ GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scen
 	{ 3, "cherry.png" },
 	{ 4, "strawberry.png" }	};
 	std::cout << "GameMap created with size of " << sizeX << " x " << sizeY << "\n";
+
+	addPlayers();
 }
 
 void GameMap::makeTile(unsigned int x, unsigned int y)
@@ -38,7 +41,7 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 	//adding button
 	std::unique_ptr<UIButton> btnPtr = std::make_unique<UIButton>(sf::IntRect(posX, posY, tileSize, tileSize),
 		"defaultMapTile.png", "hoverMapTile.png", "pressedMapTile.png");
-	btnPtr->addListener([this, x, y]() {this->onClick(x, y); });
+	btnPtr->addListener([this, x, y]() {this->onMove(x, y); });
 	m_scenePtr->getCanvas()->addElement(std::move(btnPtr));
 	//adding images
 	std::unique_ptr<UIImage> imagePtr = std::make_unique<UIImage>(sf::IntRect(posX, posY, tileSize, tileSize), "emptyFigure.png");
@@ -108,7 +111,22 @@ bool GameMap::checkPoint(const sf::Vector2i point, const unsigned int player) co
 	return false;
 }
 
-void GameMap::onClick(unsigned int x, unsigned int y)
+void GameMap::addPlayers()
+{
+	m_currentPlayer = 0;
+	m_players.push_back(std::make_unique<HumanPlayer>(0));
+}
+
+void GameMap::processPlayersMove()
+{
+	const Player* player_ptr = m_players.at(m_currentPlayer).get();
+	sf::Vector2i pos = player_ptr->makeMove();
+	onMove(pos.x, pos.y);
+	++m_currentPlayer;
+	m_currentPlayer = m_currentPlayer == m_players.size() ? 0 : m_currentPlayer;
+}
+
+void GameMap::onMove(unsigned int x, unsigned int y)
 {
 	int& getValue = m_grid->at(x, y);
 	++getValue;
