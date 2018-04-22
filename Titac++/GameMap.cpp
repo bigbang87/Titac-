@@ -26,6 +26,13 @@ GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scen
 	addPlayers();
 }
 
+void GameMap::humanInput(const unsigned int x, const unsigned int y)
+{
+	Player* const player_ptr = m_players.at(m_currentPlayer).get();
+	player_ptr->getClickInput(x, y);
+	processPlayersMove();
+}
+
 void GameMap::makeTile(unsigned int x, unsigned int y)
 {
 	//calculating positions
@@ -41,7 +48,7 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 	//adding button
 	std::unique_ptr<UIButton> btnPtr = std::make_unique<UIButton>(sf::IntRect(posX, posY, tileSize, tileSize),
 		"defaultMapTile.png", "hoverMapTile.png", "pressedMapTile.png");
-	btnPtr->addListener([this, x, y]() {this->onMove(x, y); });
+	btnPtr->addListener([this, x, y]() {this->humanInput(x, y); });
 	m_scenePtr->getCanvas()->addElement(std::move(btnPtr));
 	//adding images
 	std::unique_ptr<UIImage> imagePtr = std::make_unique<UIImage>(sf::IntRect(posX, posY, tileSize, tileSize), "emptyFigure.png");
@@ -114,28 +121,30 @@ bool GameMap::checkPoint(const sf::Vector2i point, const unsigned int player) co
 void GameMap::addPlayers()
 {
 	m_currentPlayer = 0;
-	m_players.push_back(std::make_unique<HumanPlayer>(0));
+	m_players.push_back(std::make_unique<HumanPlayer>(1));
+	m_players.push_back(std::make_unique<HumanPlayer>(2));
 }
 
 void GameMap::processPlayersMove()
 {
 	const Player* player_ptr = m_players.at(m_currentPlayer).get();
 	sf::Vector2i pos = player_ptr->makeMove();
-	onMove(pos.x, pos.y);
+	onMove(pos.x, pos.y, player_ptr->getPlayerID());
 	++m_currentPlayer;
 	m_currentPlayer = m_currentPlayer == m_players.size() ? 0 : m_currentPlayer;
 }
 
-void GameMap::onMove(unsigned int x, unsigned int y)
+void GameMap::onMove(const unsigned int x, const unsigned int y, const unsigned int playerID)
 {
-	int& getValue = m_grid->at(x, y);
-	++getValue;
-	getValue = (getValue == m_figuresMap.size()) ? 0 : getValue;
+	int& tileValue = m_grid->at(x, y);
+	if (tileValue != 0)
+		return;
+	tileValue = playerID;
 	const int imgPos = m_grid->getIdx(x, y);
 	UIImage* imgPtr = m_images.at(imgPos);
-	std::string path = m_figuresMap.at(getValue);
+	std::string path = m_figuresMap.at(tileValue);
 	imgPtr->setSprite(path);
 	std::cout << "Clicked tile: [" << x << "][" << y << "] = " << m_grid->at(x, y) << "\n";
 	if (checkWin(sf::Vector2i(x, y)))
-		std::cout << "Plater number " << getValue << " won the game\n";
+		std::cout << "Player number " << tileValue << " won the game\n";
 }

@@ -9,7 +9,8 @@ class GameMap : public Actor
 {
 public:
 	GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scene);
-	void onMove(unsigned int x, unsigned int y);
+	void humanInput(const unsigned int x, const unsigned int y);
+	void onMove(const unsigned int x, const unsigned int y, const unsigned int playerID);
 
 private:
 	void makeTile(unsigned int x, unsigned int y);
