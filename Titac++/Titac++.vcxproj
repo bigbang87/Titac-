@@ -127,6 +127,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Actor.cpp" />
+    <ClCompile Include="AIPlayer.cpp" />
+    <ClCompile Include="BasicAI.cpp" />
     <ClCompile Include="DeferredTasks.cpp" />
     <ClCompile Include="GameDelegate.cpp" />
     <ClCompile Include="GameMap.cpp" />
@@ -146,6 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor.h" />
+    <ClInclude Include="AIPlayer.h" />
+    <ClInclude Include="BasicAI.h" />
     <ClInclude Include="DeferredTasks.h" />
     <ClInclude Include="DummyClass.h" />
     <ClInclude Include="GameDelegate.h" />

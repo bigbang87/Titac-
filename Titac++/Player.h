@@ -9,7 +9,7 @@ public:
 	Player(const unsigned int id) : m_playerID(id) {};
 	virtual sf::Vector2i makeMove() const = 0;
 	virtual bool isAI() const = 0;
-	virtual unsigned int getPlayerID() const { return m_playerID;  };
+	virtual unsigned int getPlayerID() const { return m_playerID; };
 	virtual void getClickInput(const unsigned int x, const unsigned int y) = 0;
 
 private:

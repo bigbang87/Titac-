@@ -5,8 +5,6 @@
 GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scene) : m_scenePtr(scene)
 {
 	m_grid = std::make_unique<GenericGrid<int>>(sizeX, sizeY);
-	/*for (GenericGrid<int>::Iterator i = m_grid->begin(); i != m_grid->end(); i++)
-		std::cout << *i << " ";*/
 	for (int y = 0; y < sizeY; ++y) {
 		for (int x = 0; x < sizeX; ++x)
 		{
@@ -23,7 +21,7 @@ GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scen
 	{ 4, "strawberry.png" }	};
 	std::cout << "GameMap created with size of " << sizeX << " x " << sizeY << "\n";
 
-	addPlayers();
+	addPlayers(this);
 }
 
 void GameMap::humanInput(const unsigned int x, const unsigned int y)
@@ -118,11 +116,11 @@ bool GameMap::checkPoint(const sf::Vector2i point, const unsigned int player) co
 	return false;
 }
 
-void GameMap::addPlayers()
+void GameMap::addPlayers(const GameMap* gameMapPtr)
 {
 	m_currentPlayer = 0;
 	m_players.push_back(std::make_unique<HumanPlayer>(1));
-	m_players.push_back(std::make_unique<HumanPlayer>(2));
+	m_players.push_back(std::make_unique<AIPlayer>(2, gameMapPtr));
 }
 
 void GameMap::processPlayersMove()
@@ -132,6 +130,16 @@ void GameMap::processPlayersMove()
 	onMove(pos.x, pos.y, player_ptr->getPlayerID());
 	++m_currentPlayer;
 	m_currentPlayer = m_currentPlayer == m_players.size() ? 0 : m_currentPlayer;
+	//tick for next AI
+	player_ptr = m_players.at(m_currentPlayer).get();
+	if (!player_ptr->isAI())
+		return;
+	processPlayersMove();
+}
+
+GenericGrid<int> const*  GameMap::getMap() const
+{
+	return m_grid.get();
 }
 
 void GameMap::onMove(const unsigned int x, const unsigned int y, const unsigned int playerID)

@@ -51,14 +51,14 @@ public:
 		bool operator>(const ConstIterator& rhs) const { return m_index > rhs.m_index; }
 		bool operator>=(const ConstIterator& rhs) const { return m_index >= rhs.m_index; }
 
-		ConstIterator operator+(std::size_t index) const { return Iterator(m_element, m_index + index); }
-		ConstIterator operator-(std::size_t index) const { return Iterator(m_element, m_index - index); }
+		ConstIterator operator+(std::size_t index) const { return ConstIterator(m_element, m_index + index); }
+		ConstIterator operator-(std::size_t index) const { return ConstIterator(m_element, m_index - index); }
 		ConstIterator& operator+=(std::size_t index) { m_index += index; return *this; }
 		ConstIterator& operator-=(std::size_t index) { m_index -= index; return *this; }
 		ConstIterator& operator++() { ++m_index; return *this; }
-		ConstIterator operator++(int) { Iterator ret(m_element, m_index); ++m_index; return ret; }
+		ConstIterator operator++(int) { ConstIterator ret(m_element, m_index); ++m_index; return ret; }
 		ConstIterator& operator--() { --m_index; return *this; }
-		ConstIterator operator--(int) { Iterator ret(m_element, m_index); --m_index; return ret; }
+		ConstIterator operator--(int) { ConstIterator ret(m_element, m_index); --m_index; return ret; }
 
 	private:
 		std::size_t m_index = 0;
@@ -66,10 +66,8 @@ public:
 	};
 
 public:
-	GenericGrid(std::size_t sizeX, std::size_t sizeY)
+	GenericGrid(std::size_t sizeX, std::size_t sizeY) : m_sizeX(sizeX), m_sizeY(sizeY)
 	{
-		m_sizeX = sizeX;
-		m_sizeY = sizeY;
 		grid.resize(sizeX * sizeY);
 	}
 
