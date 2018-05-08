@@ -3,7 +3,6 @@
 
 AIPlayer::AIPlayer(const unsigned int id, GameMap const * const gameMapPtr) : Player(id), m_gameMapPtr(gameMapPtr)
 {
-	m_basicAI = std::make_unique<BasicAI>(m_gameMapPtr->getMap());
 }
 
 bool AIPlayer::isAI() const
@@ -13,5 +12,6 @@ bool AIPlayer::isAI() const
 
 sf::Vector2i AIPlayer::makeMove() const
 {
+	m_basicAI->getMovesFromState(m_gameMapPtr->getMap());
 	return sf::Vector2i(0, 0);
 }

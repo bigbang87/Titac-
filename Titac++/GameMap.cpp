@@ -5,8 +5,8 @@
 GameMap::GameMap(const unsigned int sizeX, const unsigned int sizeY, Scene* scene) : m_scenePtr(scene)
 {
 	m_grid = std::make_unique<GenericGrid<int>>(sizeX, sizeY);
-	for (int y = 0; y < sizeY; ++y) {
-		for (int x = 0; x < sizeX; ++x)
+	for (unsigned int y = 0; y < sizeY; ++y) {
+		for (unsigned int x = 0; x < sizeX; ++x)
 		{
 			makeTile(x, y);
 			m_grid->at(x, y) = 0;
@@ -103,7 +103,8 @@ bool GameMap::checkWin(const sf::Vector2i point) const
 
 bool GameMap::cellInBounds(const sf::Vector2i cell) const
 {
-	return !(cell.x < 0 || cell.y < 0 || cell.x >= m_grid->getSizeX() || cell.y >= m_grid->getSizeY());
+	return !(cell.x < 0 || cell.y < 0 || 
+		(unsigned int)cell.x >= m_grid->getSizeX() || (unsigned int)cell.y >= m_grid->getSizeY());
 }
 
 bool GameMap::checkPoint(const sf::Vector2i point, const unsigned int player) const
