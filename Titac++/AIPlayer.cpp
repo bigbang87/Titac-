@@ -12,6 +12,6 @@ bool AIPlayer::isAI() const
 
 sf::Vector2i AIPlayer::makeMove() const
 {
-	m_basicAI->getMovesFromState(m_gameMapPtr->getMap());
+	m_basicAI->initiateMove(m_gameMapPtr->getMap());
 	return sf::Vector2i(0, 0);
 }

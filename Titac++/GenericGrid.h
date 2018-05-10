@@ -90,6 +90,15 @@ public:
 		return (m_sizeX * y) + x;
 	}
 
+	std::vector<T> getCopyOfData() const
+	{
+		std::vector<T> copy;
+		copy.resize(grid.size());
+		for (std::size_t i = 0; i < grid.size(); ++i)
+			copy[i] = grid[i];
+		return copy;
+	}
+
 private:
 	std::size_t m_sizeX;
 	std::size_t m_sizeY;
