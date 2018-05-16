@@ -54,9 +54,9 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 	m_scenePtr->getCanvas()->addElement(std::move(imagePtr));
 }
 
-bool GameMap::checkWin(const sf::Vector2i point, GenericGrid<int> const * const state) const
+bool GameMap::checkWin(GenericGrid<int> const * const state) const
 {
-	const unsigned int player = state->at(point.x, point.y);
+	const unsigned int player = m_currentPlayer;
 	const unsigned int winSize = 3;
 	for (int x = -1; x <= 1; ++x)
 		for (int y = -1; y <= 1; ++y)

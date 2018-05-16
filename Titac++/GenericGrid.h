@@ -31,6 +31,8 @@ public:
 		Iterator& operator--() { --m_index; return *this; }
 		Iterator operator--(int) { Iterator ret(m_element, m_index); --m_index; return ret; }
 
+		const std::size_t getIndex() const { return m_index; }
+
 	private:
 		std::size_t m_index = 0;
 		T* m_element = nullptr;
@@ -60,6 +62,8 @@ public:
 		ConstIterator& operator--() { --m_index; return *this; }
 		ConstIterator operator--(int) { ConstIterator ret(m_element, m_index); --m_index; return ret; }
 
+		const std::size_t getIndex() const { return m_index; }
+
 	private:
 		std::size_t m_index = 0;
 		const T* m_element = nullptr;
@@ -88,15 +92,6 @@ public:
 	{
 		assert(x < m_sizeX && y < m_sizeY);
 		return (m_sizeX * y) + x;
-	}
-
-	std::vector<T> getCopyOfData() const
-	{
-		std::vector<T> copy;
-		copy.resize(grid.size());
-		for (std::size_t i = 0; i < grid.size(); ++i)
-			copy[i] = grid[i];
-		return copy;
 	}
 
 private:

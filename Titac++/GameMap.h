@@ -13,10 +13,10 @@ public:
 	void humanInput(const unsigned int x, const unsigned int y);
 	void onMove(const unsigned int x, const unsigned int y, const unsigned int playerID);
 	GenericGrid<int> const* getMap() const;
+	bool checkWin(GenericGrid<int> const * const) const;
 
 private:
 	void makeTile(unsigned int x, unsigned int y);
-	bool checkWin(const sf::Vector2i point, GenericGrid<int> const * const) const;
 	bool cellInBounds(const sf::Vector2i cell, GenericGrid<int> const * const state) const;
 	bool checkPoint(const sf::Vector2i point, const unsigned int player, GenericGrid<int> const * const state) const;
 	void addPlayers(const GameMap* gameMapPtr);
