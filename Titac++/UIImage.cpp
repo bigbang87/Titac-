@@ -11,7 +11,7 @@ public:
 
 	void draw(sf::RenderWindow& window, int offsetX, int offsetY)
 	{
-		m_sprite->setPosition(offsetX, offsetY);
+		m_sprite->setPosition((float)offsetX, (float)offsetY);
 		window.draw(*m_sprite);
 	}
 

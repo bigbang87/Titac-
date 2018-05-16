@@ -16,9 +16,9 @@ public:
 
 private:
 	void makeTile(unsigned int x, unsigned int y);
-	bool checkWin(const sf::Vector2i point) const;
-	bool cellInBounds(const sf::Vector2i cell) const;
-	bool checkPoint(const sf::Vector2i point, const unsigned int player) const;
+	bool checkWin(const sf::Vector2i point, GenericGrid<int> const * const) const;
+	bool cellInBounds(const sf::Vector2i cell, GenericGrid<int> const * const state) const;
+	bool checkPoint(const sf::Vector2i point, const unsigned int player, GenericGrid<int> const * const state) const;
 	void addPlayers(const GameMap* gameMapPtr);
 	void processPlayersMove();
 

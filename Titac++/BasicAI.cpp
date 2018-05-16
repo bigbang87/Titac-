@@ -1,33 +1,29 @@
 #include "BasicAI.h"
 
-BasicAI::BasicAI(GenericGrid<int> const* state_ptr)
+BasicAI::BasicAI()
 {
+	std::cout << "BasicAI player initialized \n";
 }
 
-std::vector<int> BasicAI::getMovesFromState(std::vector<int> state)
+std::vector<int> BasicAI::getMovesFromState(GenericGrid<int> const * const state_ptr)
 {
 	std::vector<int> possibleMoves;
-	possibleMoves.reserve(state.size());
-	for (std::size_t i = 0; i < state.size(); ++i)
-	{
-		if (state[i] == 0)
-			possibleMoves.push_back(i);
-	}
-	/*
+	possibleMoves.reserve(state_ptr->getSize());
 	for (GenericGrid<int>::ConstIterator i = state_ptr->begin(); i != state_ptr->end(); ++i)
 		if (*i == 0)
-	*/
+			possibleMoves.push_back(*i);
+
 	return possibleMoves;
 }
 
 void BasicAI::initiateMove(GenericGrid<int> const * const state_ptr)
 {
-	minimax(state_ptr->getCopyOfData());
+	minimax(state_ptr);
 }
 
-int BasicAI::minimax(std::vector<int> state)
+int BasicAI::minimax(GenericGrid<int> const * const state_ptr)
 {
-	std::vector<int> moves = getMovesFromState(state);
+	std::vector<int> moves = getMovesFromState(state_ptr);
 	for (std::size_t i = 0; i < moves.size(); ++i)
 	{
 		std::cout << moves[i] << ", ";

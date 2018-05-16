@@ -47,7 +47,7 @@ private:
 UIText::UIText(sf::IntRect rect, const std::string& path)
 	: UIElement(rect), pimpl(std::make_unique<SFTextImpl>(path))
 {
-	pimpl->setPosition(sf::Vector2f(rect.left, rect.top));
+	pimpl->setPosition(sf::Vector2f((float)rect.left, (float)rect.top));
 	pimpl->setFontSize(rect.height);
 }
 
@@ -64,7 +64,7 @@ void UIText::onDraw(sf::RenderWindow& window, int offsetX, int offsetY)
 void UIText::onScale(const sf::Vector2f scale)
 {
 	pimpl->setScale(scale);
-	pimpl->setPosition(sf::Vector2f(m_rect.left, m_rect.top));
+	pimpl->setPosition(sf::Vector2f((float)m_rect.left, (float)m_rect.top));
 }
 
 void UIText::setColor(const sf::Color& color)

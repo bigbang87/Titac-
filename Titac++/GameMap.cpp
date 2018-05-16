@@ -54,10 +54,10 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 	m_scenePtr->getCanvas()->addElement(std::move(imagePtr));
 }
 
-bool GameMap::checkWin(const sf::Vector2i point) const
+bool GameMap::checkWin(const sf::Vector2i point, GenericGrid<int> const * const state) const
 {
-	const unsigned int player = m_grid->at(point.x, point.y);
-	const unsigned int winSize = 4;
+	const unsigned int player = state->at(point.x, point.y);
+	const unsigned int winSize = 3;
 	for (int x = -1; x <= 1; ++x)
 		for (int y = -1; y <= 1; ++y)
 		{
@@ -74,7 +74,7 @@ bool GameMap::checkWin(const sf::Vector2i point) const
 			{
 				if (canMoveA)
 				{
-					canMoveA = checkPoint(aPoint - dir, player);
+					canMoveA = checkPoint(aPoint - dir, player, state);
 					if (canMoveA)
 					{
 						aPoint -= dir;
@@ -83,7 +83,7 @@ bool GameMap::checkWin(const sf::Vector2i point) const
 				}
 				if (canMoveB)
 				{
-					canMoveB = checkPoint(bPoint + dir, player);
+					canMoveB = checkPoint(bPoint + dir, player, state);
 					if (canMoveB)
 					{
 						bPoint += dir;
@@ -101,17 +101,17 @@ bool GameMap::checkWin(const sf::Vector2i point) const
 	return false;
 }
 
-bool GameMap::cellInBounds(const sf::Vector2i cell) const
+bool GameMap::cellInBounds(const sf::Vector2i cell, GenericGrid<int> const * const state) const
 {
 	return !(cell.x < 0 || cell.y < 0 || 
-		(unsigned int)cell.x >= m_grid->getSizeX() || (unsigned int)cell.y >= m_grid->getSizeY());
+		(unsigned int)cell.x >= state->getSizeX() || (unsigned int)cell.y >= state->getSizeY());
 }
 
-bool GameMap::checkPoint(const sf::Vector2i point, const unsigned int player) const
+bool GameMap::checkPoint(const sf::Vector2i point, const unsigned int player, GenericGrid<int> const * const state) const
 {
-	if (cellInBounds(point))
+	if (cellInBounds(point, state))
 	{
-		const int cellValue = m_grid->at(point.x, point.y);
+		const int cellValue = state->at(point.x, point.y);
 		return cellValue == player;
 	}
 	return false;
@@ -154,6 +154,6 @@ void GameMap::onMove(const unsigned int x, const unsigned int y, const unsigned 
 	std::string path = m_figuresMap.at(tileValue);
 	imgPtr->setSprite(path);
 	std::cout << "Clicked tile: [" << x << "][" << y << "] = " << m_grid->at(x, y) << "\n";
-	if (checkWin(sf::Vector2i(x, y)))
+	if (checkWin(sf::Vector2i(x, y), m_grid.get()))
 		std::cout << "Player number " << tileValue << " won the game\n";
 }
