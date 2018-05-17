@@ -8,6 +8,11 @@ class GameMap;
 
 class BasicAI
 {
+	struct Move {
+		int score;
+		int moveIndex;
+	};
+
 public:
 	BasicAI() = delete;
 	BasicAI(GameMap const * const gameMapPtr);

@@ -94,6 +94,13 @@ public:
 		return (m_sizeX * y) + x;
 	}
 
+	void getPoint(std::size_t index, int& x, int& y) const
+	{
+		assert(index < this->getSize());
+		x = (int)(index / m_sizeX);
+		y = (int)(index % m_sizeX);
+	}
+
 private:
 	std::size_t m_sizeX;
 	std::size_t m_sizeY;

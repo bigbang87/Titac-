@@ -25,6 +25,8 @@ void BasicAI::initiateMove(GenericGrid<int> const * const state_ptr)
 int BasicAI::minimax(GenericGrid<int> const * const state_ptr)
 {
 	std::vector<int> moves = getMovesFromState(state_ptr);
+	std::vector<Move> scoreList;
+	scoreList.reserve(moves.size());
 	int score = -10000;
 	for (std::size_t i = 0; i < moves.size(); ++i)
 	{
@@ -35,11 +37,16 @@ int BasicAI::minimax(GenericGrid<int> const * const state_ptr)
 			return -1;
 		}
 		GenericGrid<int> changedState = *state_ptr;
-		std::cout << moves[i] << ", ";
-		if (m_gameMapPtr->checkWin(state_ptr))
+		int x = 0;
+		int y = 0;
+		changedState.getPoint(moves[i], x, y);
+		sf::Vector2i newMove(x, y);
+		std::cout << moves[i] << " at point " << newMove.x << ", " << newMove.y << " | ";
+		/*if (m_gameMapPtr->checkWin(state_ptr))
 		{
 			return score;
 		}
+		*/
 	}
 	std::cout << "size of moves vector: " << moves.size() << "\n";
 	return 0;

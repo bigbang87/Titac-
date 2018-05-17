@@ -13,7 +13,7 @@ public:
 	void humanInput(const unsigned int x, const unsigned int y);
 	void onMove(const unsigned int x, const unsigned int y, const unsigned int playerID);
 	GenericGrid<int> const* getMap() const;
-	bool checkWin(GenericGrid<int> const * const) const;
+	bool checkWin(const sf::Vector2i point, GenericGrid<int> const * const) const;
 
 private:
 	void makeTile(unsigned int x, unsigned int y);
