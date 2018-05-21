@@ -14,6 +14,8 @@ public:
 	void onMove(const unsigned int x, const unsigned int y, const unsigned int playerID);
 	GenericGrid<int> const* getMap() const;
 	bool checkWin(const sf::Vector2i point, GenericGrid<int> const * const) const;
+	const unsigned int getCurrentPlayer() const;
+	const unsigned int getPlayersCount() const;
 
 private:
 	void makeTile(unsigned int x, unsigned int y);

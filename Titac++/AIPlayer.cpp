@@ -3,7 +3,7 @@
 
 AIPlayer::AIPlayer(const unsigned int id, GameMap const * const gameMapPtr) : Player(id), m_gameMapPtr(gameMapPtr)
 {
-	m_basicAI = std::make_unique<BasicAI>(m_gameMapPtr);
+	m_basicAI = std::make_unique<BasicAI>(id, m_gameMapPtr);
 }
 
 bool AIPlayer::isAI() const

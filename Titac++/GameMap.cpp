@@ -57,6 +57,8 @@ void GameMap::makeTile(unsigned int x, unsigned int y)
 bool GameMap::checkWin(const sf::Vector2i point, GenericGrid<int> const * const state) const
 {
 	const unsigned int player = state->at(point.x, point.y);
+
+	assert(player != 0 && "Checking win for player with ID == 0");
 	const unsigned int winSize = 3;
 	for (int x = -1; x <= 1; ++x)
 		for (int y = -1; y <= 1; ++y)
@@ -99,6 +101,16 @@ bool GameMap::checkWin(const sf::Vector2i point, GenericGrid<int> const * const 
 		}
 
 	return false;
+}
+
+const unsigned int GameMap::getCurrentPlayer() const
+{
+	return m_currentPlayer;
+}
+
+const unsigned int GameMap::getPlayersCount() const
+{
+	return m_players.size();
 }
 
 bool GameMap::cellInBounds(const sf::Vector2i cell, GenericGrid<int> const * const state) const

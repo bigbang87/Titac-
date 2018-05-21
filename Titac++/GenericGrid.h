@@ -81,7 +81,7 @@ public:
 
 	T& at(std::size_t x, std::size_t y) { return grid[getIdx(x, y)]; }
 	const T& at(std::size_t x, std::size_t y) const { return grid[getIdx(x, y)]; }
-	const T& operator[] (std::size_t index) const { return grid[index]; }
+	T& operator[] (std::size_t index) { return grid[index]; }
 
 	Iterator begin() { return Iterator(grid.data(), 0); }
 	Iterator end() { return Iterator(grid.data(), getSize()); }

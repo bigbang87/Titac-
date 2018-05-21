@@ -12,6 +12,6 @@ public:
 	virtual unsigned int getPlayerID() const { return m_playerID; };
 	virtual void getClickInput(const unsigned int x, const unsigned int y) = 0;
 
-private:
+protected:
 	const unsigned int m_playerID;
 };
