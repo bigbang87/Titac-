@@ -97,8 +97,22 @@ public:
 	void getPoint(std::size_t index, int& x, int& y) const
 	{
 		assert(index < this->getSize());
-		x = (int)(index / m_sizeX);
-		y = (int)(index % m_sizeX);
+		x = (int)(index % m_sizeY);
+		y = (int)(index / m_sizeX);
+	}
+
+	void drawState() const
+	{
+		for (std::size_t y = 0; y < m_sizeY; ++y)
+		{
+			for (std::size_t x = 0; x < m_sizeX; ++x)
+			{
+				std::cout << at(x, y);
+				if (x < m_sizeX - 1)
+					std::cout << "|";
+			}
+			std::cout << "\n";
+		}
 	}
 
 private:

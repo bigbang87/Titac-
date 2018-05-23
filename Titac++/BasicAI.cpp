@@ -19,7 +19,9 @@ std::vector<int> BasicAI::getMovesFromState(GenericGrid<int> const * const state
 
 void BasicAI::initiateMove(GenericGrid<int> const * const state_ptr)
 {
-	minimax(m_gameMapPtr->getCurrentPlayer(), state_ptr);
+	std::cout << "MINIMAX START \n";
+	minimax(m_gameMapPtr->getCurrentPlayerID(), state_ptr);
+	std::cout << "MINIMAX END \n";
 }
 
 BasicAI::Move BasicAI::minimax(const unsigned int player, GenericGrid<int> const * const state_ptr)
@@ -40,6 +42,9 @@ BasicAI::Move BasicAI::minimax(const unsigned int player, GenericGrid<int> const
 		changedState.getPoint(moves[i], x, y);
 		changedState[moves[i]] = player;
 		sf::Vector2i newMove(x, y);
+
+		std::cout << "Call number " << m_minimaxCalls << " for player: " << player << "\n";
+		changedState.drawState();
 
 		//check win
 		if (m_gameMapPtr->checkWin(newMove, &changedState))
@@ -63,7 +68,7 @@ BasicAI::Move BasicAI::minimax(const unsigned int player, GenericGrid<int> const
 				//manage players
 				unsigned int nextPlayer = player;
 				++nextPlayer;
-				nextPlayer = nextPlayer == playersCount ? 0 : nextPlayer;
+				nextPlayer = nextPlayer > playersCount ? 1 : nextPlayer;
 				//call minimax for deeper state
 				Move scoreMove = minimax(nextPlayer, &changedState);
 				scoreList.push_back(scoreMove);
@@ -72,19 +77,19 @@ BasicAI::Move BasicAI::minimax(const unsigned int player, GenericGrid<int> const
 	}
 
 	Move bestScoreMove;
-	for (auto &scoreMove : scoreList)
+	if (player == m_myID)
 	{
-		if (player == m_myID)
-		{
+		bestScoreMove.score = -10000;
+		for (auto &scoreMove : scoreList)
 			if (scoreMove.score > bestScoreMove.score)
 				bestScoreMove = scoreMove;
-		}
-		else
-		{
+	}
+	else
+	{
+		bestScoreMove.score = 10000;
+		for (auto &scoreMove : scoreList)
 			if (scoreMove.score < bestScoreMove.score)
 				bestScoreMove = scoreMove;
-		}
 	}
-	std::cout << "size of moves vector: " << moves.size() << "\n";
 	return bestScoreMove;
 }
