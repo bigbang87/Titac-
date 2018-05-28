@@ -142,7 +142,7 @@ void GameMap::processPlayersMove()
 	sf::Vector2i pos = player_ptr->makeMove();
 	onMove(pos.x, pos.y, player_ptr->getPlayerID());
 	++m_currentPlayer;
-	m_currentPlayer = m_currentPlayer > m_players.size() ? 1 : m_currentPlayer;
+	m_currentPlayer = m_currentPlayer == m_players.size() ? 0 : m_currentPlayer;
 	//tick for next AI
 	player_ptr = m_players.at(m_currentPlayer).get();
 	if (!player_ptr->isAI())
