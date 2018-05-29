@@ -96,8 +96,8 @@ public:
 
 	void getPoint(std::size_t index, int& x, int& y) const
 	{
-		assert(index < this->getSize());
-		x = (int)(index % m_sizeY);
+		assert(index < this->getSize() && " index out of range");
+		x = (int)(index % m_sizeX);
 		y = (int)(index / m_sizeX);
 	}
 

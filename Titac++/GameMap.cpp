@@ -150,7 +150,7 @@ void GameMap::processPlayersMove()
 	processPlayersMove();
 }
 
-GenericGrid<int> const*  GameMap::getMap() const
+GenericGrid<int> const* GameMap::getMap() const
 {
 	return m_grid.get();
 }

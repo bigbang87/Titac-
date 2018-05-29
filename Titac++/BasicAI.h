@@ -4,6 +4,7 @@
 #include <memory>
 #include <iostream>
 #include "GenericGrid.h"
+#include "SFML/Graphics.hpp"
 class GameMap;
 
 class BasicAI
@@ -17,7 +18,7 @@ public:
 	BasicAI() = delete;
 	BasicAI(const unsigned int myID, GameMap const * const gameMapPtr);
 	std::vector<int> getMovesFromState(GenericGrid<int> const * const state_ptr);
-	void initiateMove(GenericGrid<int> const * const state_ptr);
+	sf::Vector2i initiateMove(GenericGrid<int> const * const state_ptr);
 	Move minimax(const unsigned int player, GenericGrid<int> const * const state_ptr);
 
 private:
