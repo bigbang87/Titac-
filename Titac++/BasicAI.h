@@ -12,6 +12,8 @@ class BasicAI
 	struct Move {
 		int score;
 		int moveIndex;
+		int callID;
+		int parentCall;
 	};
 
 public:
@@ -19,7 +21,8 @@ public:
 	BasicAI(const unsigned int myID, GameMap const * const gameMapPtr);
 	std::vector<int> getMovesFromState(GenericGrid<int> const * const state_ptr);
 	sf::Vector2i initiateMove(GenericGrid<int> const * const state_ptr);
-	Move minimax(const unsigned int player, GenericGrid<int> const * const state_ptr);
+	Move minimax(const int callParent, const unsigned int player, int parentMove, 
+		GenericGrid<int> const * const state_ptr);
 
 private:
 	unsigned int m_minimaxCalls;
