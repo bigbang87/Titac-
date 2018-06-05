@@ -18,7 +18,7 @@ void GameScene::onInitialize()
 	optionsBtnPtr->addListener([this]() {m_gameDelegate.loadScene(new MainMenuScene(m_window, m_gameDelegate)); });
 	m_canvas->addElement(std::move(optionsBtnPtr));
 	//Actors
-	std::unique_ptr<Actor> gameMapPtr = std::make_unique<GameMap>(3, 2, this);
+	std::unique_ptr<Actor> gameMapPtr = std::make_unique<GameMap>(3, 3, this);
 	m_GameMapPtr = gameMapPtr.get();
 	addActor(std::move(gameMapPtr));
 	std::cout << "GameScene loaded\n";

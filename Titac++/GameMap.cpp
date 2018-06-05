@@ -138,6 +138,23 @@ void GameMap::addPlayers(const GameMap* gameMapPtr)
 
 void GameMap::processPlayersMove()
 {
+	//
+	//HACK
+	//
+	bool gameOver = true;
+	for (GenericGrid<int>::Iterator i = m_grid->begin(); i != m_grid->end(); ++i)
+	{
+		if (*i == 0)
+		{
+			gameOver = false;
+			break;
+		}
+	}
+	if (gameOver)
+		return;
+	//
+	//HACK END
+	//
 	const Player* player_ptr = m_players.at(m_currentPlayer).get();
 	sf::Vector2i pos = player_ptr->makeMove();
 	onMove(pos.x, pos.y, player_ptr->getPlayerID());

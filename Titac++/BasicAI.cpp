@@ -7,7 +7,7 @@
 BasicAI::BasicAI(const unsigned int myID, GameMap const * const gameMapPtr) : m_gameMapPtr(gameMapPtr), m_myID(myID)
 {
 	std::cout << "BasicAI player initialized \n";
-	m_minimaxCalls = 0;
+	m_steps = 0;
 }
 
 std::vector<int> BasicAI::getMovesFromState(GenericGrid<int> const * const state_ptr)
@@ -22,24 +22,28 @@ std::vector<int> BasicAI::getMovesFromState(GenericGrid<int> const * const state
 
 sf::Vector2i BasicAI::initiateMove(GenericGrid<int> const * const state_ptr)
 {
-	m_minimaxCalls = 0;
+	m_steps = 0;
 	system("cls");
+	/*std::cout << "Initial state (step 0):\n";
+	state_ptr->drawState();
+	std::cout << "\n";*/
 	Move move = minimax(0, m_gameMapPtr->getCurrentPlayerID(), -1, state_ptr);
 	int x, y;
 	m_gameMapPtr->getMap()->getPoint(move.moveIndex, x, y);
 	return sf::Vector2i(x, y);
 }
 
-BasicAI::Move BasicAI::minimax(const int callParent, const unsigned int player, int parentMove, 
+BasicAI::Move BasicAI::minimax(const int parentStep, const unsigned int player, int parentMove, 
 	GenericGrid<int> const * const state_ptr)
 {
+	const bool debugMode = false;
 	std::vector<int> moves = getMovesFromState(state_ptr);
 	std::vector<Move> scoreList;
 	scoreList.reserve(moves.size());
 	unsigned int playersCount = m_gameMapPtr->getPlayersCount();
 	for (std::size_t i = 0; i < moves.size(); ++i)
 	{
-		++m_minimaxCalls;
+		++m_steps;
 
 		GenericGrid<int> changedState = *state_ptr;
 		int x = 0;
@@ -48,26 +52,31 @@ BasicAI::Move BasicAI::minimax(const int callParent, const unsigned int player, 
 		changedState[moves[i]] = player;
 		sf::Vector2i newMove(x, y);
 
-		std::cout << "call: " << m_minimaxCalls << ", parent: " << callParent 
-			<< ", parent move id: " << parentMove << ", player: " << player << "\n";
-		changedState.drawState();
+		if (debugMode)
+		{
+			std::cout << "step: " << m_steps << ", parentStep: " << parentStep
+				<< ", parent move: " << parentMove << ", player: " << state_ptr->getLiteralFigure(player) << "\n";
+			changedState.drawState();
+		}
 
 		//check win
 		if (m_gameMapPtr->checkWin(newMove, &changedState))
 		{
 			Move scoreMove;
 			scoreMove.moveIndex = moves[i];
-			scoreMove.callID = m_minimaxCalls;
-			scoreMove.parentCall = callParent;
+			scoreMove.thisStep = m_steps;
+			scoreMove.parentStep = parentStep;
 			if (player == m_myID)
 			{
 				scoreMove.score = 10;
-				std::cout << "AI win\n";
+				if (debugMode)
+					std::cout << "Win\n";
 			}
 			else
 			{
 				scoreMove.score = -10;
-				std::cout << "Human win\n";
+				if (debugMode)
+					std::cout << "Loose\n";
 			}
 			return scoreMove;
 		}
@@ -81,18 +90,22 @@ BasicAI::Move BasicAI::minimax(const int callParent, const unsigned int player, 
 				++nextPlayer;
 				nextPlayer = nextPlayer > playersCount ? 1 : nextPlayer;
 				//call minimax for deeper state
-				Move scoreMove = minimax(m_minimaxCalls, nextPlayer, moves[i], &changedState);
+				Move scoreMove = minimax(m_steps, nextPlayer, moves[i], &changedState);
 				scoreList.push_back(scoreMove);
 			}
 			else
 			{
 				Move scoreMove;
-				scoreMove.moveIndex = parentMove;
-				scoreMove.parentCall = callParent;
-				scoreMove.callID = m_minimaxCalls;
+				if (parentMove == -1)
+					scoreMove.moveIndex = moves[i];
+				else
+					scoreMove.moveIndex = parentMove;
+				scoreMove.parentStep = parentStep;
+				scoreMove.thisStep = m_steps;
 				scoreMove.score = 0;
 				scoreList.push_back(scoreMove);
-				std::cout << "Draw\n";
+				if (debugMode)
+					std::cout << "Draw\n";
 			}
 		}
 	}
@@ -112,9 +125,15 @@ BasicAI::Move BasicAI::minimax(const int callParent, const unsigned int player, 
 			if (scoreMove.score < bestScoreMove.score)
 				bestScoreMove = scoreMove;
 	}
-
-	std::cout << "Result for call: " << bestScoreMove.callID <<
-		", parent: " << bestScoreMove.parentCall << ", parent move id: "
-		<< bestScoreMove.moveIndex << ", player: " << player << "\n";
+	//dodane
+	if (parentMove != -1)
+		bestScoreMove.moveIndex = parentMove;
+	//end dodane
+	if (debugMode)
+	{
+		std::cout << "Result for step: " << bestScoreMove.thisStep <<
+			", parentSept: " << bestScoreMove.parentStep << ", parent move: "
+			<< bestScoreMove.moveIndex << ", player: " << state_ptr->getLiteralFigure(player) << "\n";
+	}
 	return bestScoreMove;
 }

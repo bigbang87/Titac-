@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <cassert>
+#include <map>
 
 template <typename T>
 class GenericGrid
@@ -70,6 +71,16 @@ public:
 	};
 
 public:
+	const std::map<int, char> figuresLiteralMeaning = {
+		{ 0, '-' },{ 1, 'O' },{ 2, 'X' },{ 3, 'A' },
+		{ 4, 'B' },{ 5, 'C' },{ 6, 'D' },{ 7, 'E' }
+	};
+
+	char getLiteralFigure(int index) const
+	{
+		return figuresLiteralMeaning.at(index);
+	}
+
 	GenericGrid(std::size_t sizeX, std::size_t sizeY) : m_sizeX(sizeX), m_sizeY(sizeY)
 	{
 		grid.resize(sizeX * sizeY);
@@ -107,7 +118,7 @@ public:
 		{
 			for (std::size_t x = 0; x < m_sizeX; ++x)
 			{
-				std::cout << at(x, y);
+				std::cout << figuresLiteralMeaning.at(at(x, y));
 				if (x < m_sizeX - 1)
 					std::cout << "|";
 			}
