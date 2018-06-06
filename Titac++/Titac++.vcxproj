@@ -160,6 +160,7 @@
     <ClInclude Include="MainMenuScene.h" />
     <ClInclude Include="OptionsScene.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Profiler.h" />
     <ClInclude Include="ResourceFont.h" />
     <ClInclude Include="ResourceImage.h" />
     <ClInclude Include="ResourceIncludes.h" />
