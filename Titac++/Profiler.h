@@ -3,8 +3,6 @@
 #include <map>
 #include <iostream>
 #include <chrono>
-#include <functional>
-#include <optional>
 
 using namespace std;
 typedef chrono::high_resolution_clock clock;
@@ -16,33 +14,23 @@ class Profiler
 public:
 	static void startTimer(string timerName)
 	{
-		size_t str_hash = hash<string>{}(timerName);
-		map<timer_point, size_t>::iterator map_it = timersMap.begin();
-
-
-		timersMap.insert(map_it, pair<timer_point, size_t>(clock::now(), 0));
+		map<string, timer_point>::iterator map_it = timersMap.find(timerName);
+		if (map_it != timersMap.end())
+			return;
+		map_it = timersMap.begin();
+		timersMap.insert(map_it, pair<string, timer_point>(timerName, clock::now()));
 	}
 
 	static void endTimer(string timerName)
 	{
-		size_t str_hash = hash<string>{}(timerName);
+		map<string, timer_point>::iterator map_it = timersMap.find(timerName);
+		if (map_it == timersMap.end())
+			return;
 		timer_point end = clock::now();
-		//duration timerDuration = map_it->first - end;
-	}
-
-	static optional<timer_point> getTimer(size_t str_hash)
-	{
-		map<timer_point, size_t>::iterator map_it;
-		for (map_it = timersMap.begin(); map_it != timersMap.end(); ++map_it)
-		{
-			//if (map_it->second == str_hash)
-				//return std::optional<timer_point>{map_it->first};
-		}
-		timer_point a = clock::now();
-		optional<timer_point> b = a;
-		return {};
+		duration dur = end - map_it->second;
+		timersMap.erase(map_it);
 	}
 
 private:
-	static map<timer_point, size_t> timersMap;
+	static map<string, timer_point> timersMap;
 };
