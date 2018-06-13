@@ -2,7 +2,9 @@
 #include "GameMap.h"
 
 #include <stdlib.h>
+#include "Profiler.h"
 
+Profiler profiler;
 
 BasicAI::BasicAI(const unsigned int myID, GameMap const * const gameMapPtr) : m_gameMapPtr(gameMapPtr), m_myID(myID)
 {
@@ -24,10 +26,9 @@ sf::Vector2i BasicAI::initiateMove(GenericGrid<int> const * const state_ptr)
 {
 	m_steps = 0;
 	system("cls");
-	/*std::cout << "Initial state (step 0):\n";
-	state_ptr->drawState();
-	std::cout << "\n";*/
+	profiler.startTimer("test");
 	Move move = minimax(0, m_gameMapPtr->getCurrentPlayerID(), -1, state_ptr);
+	profiler.endTimer("test");
 	int x, y;
 	m_gameMapPtr->getMap()->getPoint(move.moveIndex, x, y);
 	return sf::Vector2i(x, y);
